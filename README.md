@@ -48,9 +48,4 @@
    npm run dev
    ```
 
-## 📸 Screenshots
-
-*(Add screenshots here)*
-
----
-Built with ❤️ by [Your Name]
+Built with ❤️ by [Karthikeya]
