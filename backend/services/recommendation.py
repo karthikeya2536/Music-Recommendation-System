@@ -1,9 +1,9 @@
-import torch
+import numpy as np
 import json
 import os
 from typing import List, Dict, Optional
 from backend.core.config import get_settings
-from backend.id_mapper import get_user_idx # We will fix this import or move the file later
+from backend.id_mapper import get_user_idx
 
 settings = get_settings()
 
@@ -17,68 +17,49 @@ class RecommendationService:
 
     def _load_model(self):
         try:
+            import torch # Import locally only for loading the .pt file if needed
             print(f"Loading embeddings from {settings.ABS_EMBEDDINGS_PATH}")
             if not os.path.exists(settings.ABS_EMBEDDINGS_PATH):
-                print("Embeddings file not found. Recommendation service will return empty.")
+                print("Embeddings file not found.")
                 return
 
-            # Check for CPU/GPU
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            emb_data = torch.load(settings.ABS_EMBEDDINGS_PATH, map_location=device)
+            emb_data = torch.load(settings.ABS_EMBEDDINGS_PATH, map_location='cpu')
             
-            self.user_emb = emb_data['user_embeddings'].to(device)
-            self.song_emb = emb_data['song_embeddings'].to(device)
+            self.user_emb = emb_data['user_embeddings'].numpy()
+            self.song_emb = emb_data['song_embeddings'].numpy()
+            del emb_data
             
-            # Load metadata
-            # Assuming dataset.json is in the root or known location matching indices
-            # We use the dataset.json in 'backend' if available, or the root one.
-            # config didn't specify dataset path, let's look in backend dir
             dataset_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dataset.json")
             if not os.path.exists(dataset_path):
-                # Validation fallback to root
                 dataset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "dataset.json")
             
             if os.path.exists(dataset_path):
                 with open(dataset_path, 'r', encoding='utf-8') as f:
                     self.songs_metadata = json.load(f)
-            else:
-                print("Dataset json not found!")
-                
+            
             self.loaded = True
-            print("Recommendation model loaded successfully.")
+            print("Recommendation model (NumPy) loaded successfully.")
             
         except Exception as e:
             print(f"Error loading recommendation model: {e}")
 
     def get_recommendations(self, user_id: str, top_k: int = 10) -> List[Dict]:
-        if not self.loaded:
+        if not self.loaded or self.user_emb is None:
             return []
             
-        # Get internal ID
         u_idx = get_user_idx(user_id, create=False)
-        if u_idx is None:
-            # Cold start: Return random or popular (logic could be expanded)
-            # For now return empty or trigger specific cold start logic
-            return []
-            
-        # Check if user index is within embedding range
-        # Use shape check
-        if u_idx >= self.user_emb.shape[0]:
-            print(f"User index {u_idx} out of bounds for model (trained on {self.user_emb.shape[0]})")
+        if u_idx is None or u_idx >= self.user_emb.shape[0]:
             return []
 
-        # Inference
         try:
             u_vec = self.user_emb[u_idx]
-            scores = torch.matmul(self.song_emb, u_vec)
-            top_scores, top_indices = torch.topk(scores, top_k)
+            scores = np.dot(self.song_emb, u_vec)
+            top_indices = np.argsort(scores)[-top_k:][::-1]
             
             results = []
-            for idx_tensor in top_indices:
-                idx = idx_tensor.item()
+            for idx in top_indices:
                 if 0 <= idx < len(self.songs_metadata):
                     song = self.songs_metadata[idx]
-                    # Ensure minimal fields
                     results.append({
                         "id": song.get("id"),
                         "title": song.get("title"),
