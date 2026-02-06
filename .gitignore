@@ -58,3 +58,5 @@ song_head.txt
 *.sln
 *.sw?
 tracks.csv
+
+backend/serviceAccountKey.json

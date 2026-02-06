@@ -20,6 +20,19 @@ def init_db():
         _db_client = firestore.client()
         return
 
+    # First try reading from environment variable (for Vercel/Production)
+    service_account_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT')
+    if service_account_json:
+        try:
+            import json
+            cred_dict = json.loads(service_account_json)
+            cred = credentials.Certificate(cred_dict)
+            firebase_admin.initialize_app(cred)
+            _db_client = firestore.client()
+            return
+        except Exception as e:
+            print(f"Error initializing from env var: {e}")
+
     cred_path = settings.ABS_CREDENTIALS_PATH
     
     if os.path.exists(cred_path):

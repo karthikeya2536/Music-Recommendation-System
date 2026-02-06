@@ -16,7 +16,7 @@ const FALLBACK_TRACKS: Track[] = [
     }
 ];
 
-export const MOCK_TRACKS: Track[] = FALLBACK_TRACKS;
+export const MOCK_TRACKS: Track[] = [];
 
 // --- Dynamic API Fetchers ---
 
