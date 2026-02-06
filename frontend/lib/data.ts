@@ -73,6 +73,10 @@ export const getAllArtists = (): string[] => {
     return [];
 };
 
+export const getAllAlbums = (): string[] => {
+    return [];
+};
+
 export const MOCK_PLAYLISTS = [
     { id: 'p1', title: 'Top Hits', coverUrl: 'https://picsum.photos/id/1/200/200', tracks: [] },
 ];
