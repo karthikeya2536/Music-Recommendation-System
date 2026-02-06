@@ -5,47 +5,110 @@
   
   **The future of high-fidelity music streaming.**
   
-  Start listening to the unseen. An immersive, AI-powered music platform built for audiophiles.
+  Start listening to the unseen. An immersive, AI-powered music platform built for audiophiles, featuring a hybrid neural network recommendation engine.
 </div>
 
 ## 🚀 Features
 
-- **🧠 Smart Recommendations**: AI-powered curation that evolves with your taste, featuring custom neural network visualizations.
-- **🎧 High-Fidelity Audio**: Lossless 24-bit audio streaming for the purest listening experience.
-- **👥 Collaborative Playlists**: Build the perfect vibe together with real-time voting and adding.
-- **📡 Live Sessions**: Stream your mix to the world and let followers tune in.
-- **✨ Immersive UI**: A fluid, futuristic interface powered by Framer Motion and Tailwind CSS.
+- **🧠 Hybrid AI Recommendations**: Advanced recommendation engine combining Content-Based Filtering and Neural Collaborative Filtering (NCF) for personalized discovery.
+- **🎧 High-Fidelity Audio**: Lossless 24-bit audio streaming experience.
+- **👥 Social Listening**: Real-time collaborative playlists and live listening sessions.
+- **✨ Immersive UI**: Futuristic, fluid interface aimed at visual excellence.
+- **🐳 Dockerized**: Fully containerized architecture for easy deployment.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, TypeScript, Vite
-- **Styling**: Tailwind CSS, Framer Motion (for complex animations)
-- **State Management**: Zustand
-- **Icons**: Lucide React
-- **AI Integration**: Gemini API (for smart suggestions)
+### Frontend
+- **Framework**: React (Vite)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, Framer Motion
+- **State**: Zustand
 
-## 🏃‍♂️ Run Locally
+### Backend
+- **Framework**: FastAPI (Python)
+- **Database**: Google Firestore (NoSQL)
+- **API**: RESTful endpoints with Pydantic validation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/karthikeya2536/Music-Recommendation-System.git
-   cd sonicstream
-   ```
+### Recommendation Engine
+- **Core**: PyTorch
+- **Models**: Hybrid Neural Network (HNN), Matrix Factorization (MF)
+- **Data Processing**: Pandas, Scikit-learn
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## 📂 Project Structure
 
-3. **Configure Environment**
-   Create a `.env.local` file and add your Gemini API key:
-   ```env
-   VITE_GEMINI_API_KEY=your_api_key_here
-   ```
+```bash
+├── frontend/                # React application
+├── backend/                 # FastAPI server & endpoints
+│   ├── api/                 # API Routes (v1)
+│   ├── db/                  # Database connection (Firestore)
+│   └── services/            # Business logic
+├── recommendation_engine/   # AI/ML Models & Training scripts
+└── docker-compose.yml       # Container orchestration
+```
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+## 🏃‍♂️ Getting Started
+
+### Option A: Docker (Recommended)
+
+Run the entire stack with a single command:
+
+```bash
+docker-compose up --build
+```
+
+The app will be available at:
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:8000`
+
+### Option B: Local Manual Setup
+
+#### 1. Backend Setup
+
+```bash
+cd backend
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+**Configuration**:
+1. Place your `serviceAccountKey.json` in `backend/`.
+2. Create `backend/.env` if needed (see `.env.example`).
+
+Run the server:
+```bash
+python main.py
+```
+
+#### 2. Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+**Configuration**:
+Create `.env.local`:
+```env
+VITE_API_URL=http://localhost:8000/api/v1
+VITE_GEMINI_API_KEY=your_gemini_key
+```
+
+Run the development server:
+```bash
+npm run dev
+```
+
+## 🧪 Machine Learning
+
+To retrain the models:
+```bash
+cd recommendation_engine
+python train.py
+```
 
 Built with ❤️ by [Karthikeya]
