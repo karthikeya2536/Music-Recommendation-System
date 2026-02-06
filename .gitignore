@@ -25,8 +25,9 @@ dist-ssr
 tracks.csv
 *.pt
 *.pth
-dataset*.json
-full_dataset.json
+!songs.csv
+!dataset.json
+!frontend/dataset.json
 
 # Editor directories and files
 .vscode/*
