@@ -1,41 +1,52 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Python
+# System & IDE
+.DS_Store
+.vscode/
+.idea/
 __pycache__/
-*.py[cod]
-venv/
+*.pyc
+
+# Environment
 .env
 .env.local
-backend/serviceAccountKey.json
+serviceAccountKey.json
 
 # Node
-node_modules
-dist
-dist-ssr
-*.local
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
 
-# Large Data files
-tracks.csv
-*.pt
-*.pth
-!songs.csv
-!dataset.json
-!frontend/dataset.json
+# Python / Virtualenv
+venv/
+env/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Data
+# Keep dataset.json and songs.csv as they seem core now
+dataset_clean.json
+full_dataset.json
+initial_dataset.json
+graph_data.json
+graph_data.pt
+final_embeddings.pt
+hnn_model.pth
+mf_model.pth
+# (Note: keeping models if they are needed for running, but usually ignored in git if large. User said "imp files". Models are likely needed for the app to run if not retraining.)
+
+# Validating large files - Models might be too big for GitHub (start with them, user can use LFS if needed)
+# backend/serviceAccountKey.json should definitely be ignored.
+
+# Temporary Scripts & Legacy
+scripts/legacy/
+check_*.py
+inspect_*.py
+migrate_*.py
+restore_*.py
+cleanup_*.py
+download_data.py
+fix_images.py
+process_dataset.py
+test_api*.py
+generate_data_ts.py
+*.txt
+push_error.txt
+song_head.txt
