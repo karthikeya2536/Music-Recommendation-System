@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+firebase-admin
+python-dotenv
+pydantic-settings
+torch --index-url https://download.pytorch.org/whl/cpu
+numpy
+pandas

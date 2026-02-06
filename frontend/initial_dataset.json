@@ -1,0 +1,502 @@
+[
+  {
+    "id": "0bYg9bo50gSsH3LtXe2SQn",
+    "title": "All I Want for Christmas Is You",
+    "artist": "Mariah Carey",
+    "album": "Merry Christmas",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+    "duration": 241.107,
+    "lyrics": []
+  },
+  {
+    "id": "2FRnf9qhLbvw8fu4IBXx78",
+    "title": "Last Christmas",
+    "artist": "Wham!",
+    "album": "LAST CHRISTMAS",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    "duration": 262.96,
+    "lyrics": []
+  },
+  {
+    "id": "2EjXfH91m7f8HiJN1yQg97",
+    "title": "Rockin' Around The Christmas Tree",
+    "artist": "Brenda Lee",
+    "album": "Merry Christmas From Brenda Lee",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    "duration": 126.267,
+    "lyrics": []
+  },
+  {
+    "id": "0lizgQ7Qw35od7CYaoMBZb",
+    "title": "Santa Tell Me",
+    "artist": "Ariana Grande",
+    "album": "Santa Tell Me",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "duration": 204.093,
+    "lyrics": []
+  },
+  {
+    "id": "7vQbuQcyTflfCIOu3Uzzya",
+    "title": "Jingle Bell Rock",
+    "artist": "Bobby Helms",
+    "album": "Jingle Bell Rock/Captain Santa Claus (And His Reindeer Space Patrol)",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 130.973,
+    "lyrics": []
+  },
+  {
+    "id": "2uFaJJtFpPDc5Pa95XzTvg",
+    "title": "Let It Snow! Let It Snow! Let It Snow!",
+    "artist": "Dean Martin",
+    "album": "A Winter Romance",
+    "coverUrl": "https://images.unsplash.com/photo-1594623930572-300a3011d9ae?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "duration": 117.147,
+    "lyrics": []
+  },
+  {
+    "id": "5hslUAKq9I9CG2bAulFkHN",
+    "title": "It's the Most Wonderful Time of the Year",
+    "artist": "Andy Williams",
+    "album": "The Andy Williams Christmas Album",
+    "coverUrl": "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 151.933,
+    "lyrics": []
+  },
+  {
+    "id": "5ASM6Qjiav2xPe7gRkQMsQ",
+    "title": "Sleigh Ride",
+    "artist": "The Ronettes",
+    "album": "A Christmas Gift For You From Phil Spector",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    "duration": 181.267,
+    "lyrics": []
+  },
+  {
+    "id": "70LcF31zb1H0PyJoS1Sx1r",
+    "title": "Creep",
+    "artist": "Radiohead",
+    "album": "Pablo Honey",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+    "duration": 238.64,
+    "lyrics": []
+  },
+  {
+    "id": "5XeFesFbtLpXzIVDNQP22n",
+    "title": "I Wanna Be Yours",
+    "artist": "Arctic Monkeys",
+    "album": "AM",
+    "coverUrl": "https://images.unsplash.com/photo-1594623930572-300a3011d9ae?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+    "duration": 183.956,
+    "lyrics": []
+  },
+  {
+    "id": "4PS1e8f2LvuTFgUs1Cn3ON",
+    "title": "The Christmas Song (Merry Christmas To You)",
+    "artist": "Nat King Cole",
+    "album": "The Christmas Song (Expanded Edition)",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+    "duration": 192.16,
+    "lyrics": []
+  },
+  {
+    "id": "3XsaSIPWvM61RIFfeb0BBR",
+    "title": "White Christmas - 1947 Version",
+    "artist": "Bing Crosby",
+    "album": "White Christmas",
+    "coverUrl": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "duration": 183.613,
+    "lyrics": []
+  },
+  {
+    "id": "2TE4xW3ImvpltVU0cPcKUn",
+    "title": "Merry Christmas Everyone",
+    "artist": "Shakin' Stevens",
+    "album": "Merry Christmas Everyone",
+    "coverUrl": "https://images.unsplash.com/photo-1594623930572-300a3011d9ae?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "duration": 220.16,
+    "lyrics": []
+  },
+  {
+    "id": "7MXVkk9YMctZqd1Srtv4MB",
+    "title": "Starboy",
+    "artist": "The Weeknd",
+    "album": "Starboy",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    "duration": 230.453,
+    "lyrics": []
+  },
+  {
+    "id": "2pXpURmn6zC5ZYDMms6fwa",
+    "title": "It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)",
+    "artist": "Perry Como",
+    "album": "Greatest Christmas Songs",
+    "coverUrl": "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    "duration": 155.933,
+    "lyrics": []
+  },
+  {
+    "id": "1zi7xx7UVEFkmKfv06H8x0",
+    "title": "One Dance",
+    "artist": "Drake",
+    "album": "Views",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    "duration": 173.987,
+    "lyrics": []
+  },
+  {
+    "id": "2fuYa3Lx06QQJAm0MjztKr",
+    "title": "Let Down",
+    "artist": "Radiohead",
+    "album": "OK Computer",
+    "coverUrl": "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "duration": 299.56,
+    "lyrics": []
+  },
+  {
+    "id": "0d28khcov6AiegSCpG5TuT",
+    "title": "Feel Good Inc.",
+    "artist": "Gorillaz",
+    "album": "Demon Days",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    "duration": 222.64,
+    "lyrics": []
+  },
+  {
+    "id": "3GCdLUSnKSMJhs4Tj6CV3s",
+    "title": "All The Stars (with SZA) - From \"Black Panther: The Album\"",
+    "artist": "Kendrick Lamar",
+    "album": "Black Panther The Album Music From And Inspired By",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 232.187,
+    "lyrics": []
+  },
+  {
+    "id": "3QIoEi8Enr9uHffwInGIsC",
+    "title": "Please Come Home for Christmas - 2013 Remaster",
+    "artist": "Eagles",
+    "album": "Please Come Home for Christmas / Funky New Year (2013 Remaster)",
+    "coverUrl": "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    "duration": 177.44,
+    "lyrics": []
+  },
+  {
+    "id": "003vvx7Niy0yvhvHt4a68B",
+    "title": "Mr. Brightside",
+    "artist": "The Killers",
+    "album": "Hot Fuss",
+    "coverUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "duration": 222.973,
+    "lyrics": []
+  },
+  {
+    "id": "0ofHAoxe9vBkTCp2UQIavz",
+    "title": "Dreams - 2004 Remaster",
+    "artist": "Fleetwood Mac",
+    "album": "Rumours (Super Deluxe)",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "duration": 257.8,
+    "lyrics": []
+  },
+  {
+    "id": "60a0Rd6pjrkxjPbaKzXjfq",
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "album": "Hybrid Theory (Bonus Edition)",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 216.88,
+    "lyrics": []
+  },
+  {
+    "id": "2pnPe4pJtq7689i5ydzvJJ",
+    "title": "Run Rudolph Run",
+    "artist": "Chuck Berry",
+    "album": "Rock 'N' Roll Rarities",
+    "coverUrl": "https://images.unsplash.com/photo-1515169067750-d51a73b55163?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 165.733,
+    "lyrics": []
+  },
+  {
+    "id": "6K4t31amVTZDgR3sKmwUJJ",
+    "title": "The Less I Know The Better",
+    "artist": "Tame Impala",
+    "album": "Currents",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 216.32,
+    "lyrics": []
+  },
+  {
+    "id": "7qiZfU4dY1lWllzX7mPBI3",
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "album": "\u00f7 (Deluxe)",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 233.713,
+    "lyrics": []
+  },
+  {
+    "id": "4RvWPyQ5RL0ao9LPZeSouE",
+    "title": "Everybody Wants To Rule The World",
+    "artist": "Tears For Fears",
+    "album": "Songs From The Big Chair (Super Deluxe Edition)",
+    "coverUrl": "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "duration": 251.489,
+    "lyrics": []
+  },
+  {
+    "id": "4kKdvXD0ez7jp1296JmAts",
+    "title": "Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)",
+    "artist": "Frank Sinatra",
+    "album": "Christmas Songs by Sinatra",
+    "coverUrl": "https://images.unsplash.com/photo-1515169067750-d51a73b55163?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 155.453,
+    "lyrics": []
+  },
+  {
+    "id": "0tgVpDi06FyKpA1z0VMD4v",
+    "title": "Perfect",
+    "artist": "Ed Sheeran",
+    "album": "\u00f7 (Deluxe)",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    "duration": 263.4,
+    "lyrics": []
+  },
+  {
+    "id": "0COqiPhxzoWICwFCS4eZcp",
+    "title": "Bring Me To Life",
+    "artist": "Evanescence",
+    "album": "Fallen",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "duration": 235.893,
+    "lyrics": []
+  },
+  {
+    "id": "2nLtzopw4rPReszdYBJU6h",
+    "title": "Numb",
+    "artist": "Linkin Park",
+    "album": "Meteora",
+    "coverUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "duration": 187.52,
+    "lyrics": []
+  },
+  {
+    "id": "4tHqQMWSqmL6YjXwsqthDI",
+    "title": "Carol of the Bells (From \"Home Alone\" Soundtrack)",
+    "artist": "John Williams",
+    "album": "Home Alone (Original Motion Picture Soundtrack)",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "duration": 85.267,
+    "lyrics": []
+  },
+  {
+    "id": "2tpWsVSb9UEmDRxAl1zhX1",
+    "title": "Counting Stars",
+    "artist": "OneRepublic",
+    "album": "Native",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "duration": 257.267,
+    "lyrics": []
+  },
+  {
+    "id": "1foCxQtxBweJtZmdxhEHVO",
+    "title": "Santa Baby (with Henri Ren\u00e9 & His Orchestra)",
+    "artist": "Eartha Kitt",
+    "album": "Heavenly Eartha",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "duration": 206.067,
+    "lyrics": []
+  },
+  {
+    "id": "5cF0dROlMOK5uNZtivgu50",
+    "title": "Attention",
+    "artist": "Charlie Puth",
+    "album": "Voicenotes",
+    "coverUrl": "https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 208.787,
+    "lyrics": []
+  },
+  {
+    "id": "10nyNJ6zNy2YVYLrcwLccB",
+    "title": "No Surprises",
+    "artist": "Radiohead",
+    "album": "OK Computer",
+    "coverUrl": "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+    "duration": 229.12,
+    "lyrics": []
+  },
+  {
+    "id": "7qEHsqek33rTcFNT9PFqLf",
+    "title": "Someone You Loved",
+    "artist": "Lewis Capaldi",
+    "album": "Divinely Uninspired To A Hellish Extent",
+    "coverUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+    "duration": 182.161,
+    "lyrics": []
+  },
+  {
+    "id": "4QNpBfC0zvjKqPJcyqBy9W",
+    "title": "Give Me Everything (feat. Nayer)",
+    "artist": "Pitbull",
+    "album": "Planet Pit (Deluxe Version)",
+    "coverUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+    "duration": 252.307,
+    "lyrics": []
+  },
+  {
+    "id": "5TTGoX70AFrTvuEtqHK37S",
+    "title": "No. 1 Party Anthem",
+    "artist": "Arctic Monkeys",
+    "album": "AM",
+    "coverUrl": "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "duration": 243.132,
+    "lyrics": []
+  },
+  {
+    "id": "5FVd6KXrgO9B3JPmC8OPst",
+    "title": "Do I Wanna Know?",
+    "artist": "Arctic Monkeys",
+    "album": "AM",
+    "coverUrl": "https://images.unsplash.com/photo-1515169067750-d51a73b55163?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    "duration": 272.394,
+    "lyrics": []
+  },
+  {
+    "id": "04vLj9QUXoKdRlsp3gkURo",
+    "title": "Mele Kalikimaka (Merry Christmas)",
+    "artist": "Bing Crosby",
+    "album": "White Christmas",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    "duration": 175.333,
+    "lyrics": []
+  },
+  {
+    "id": "15JINEqzVMv3SvJTAXAKED",
+    "title": "Love The Way You Lie",
+    "artist": "Eminem",
+    "album": "Recovery",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535808-3196a3e2e5f9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 263.373,
+    "lyrics": []
+  },
+  {
+    "id": "2OQ6a4CfUeYskpTTgyawyJ",
+    "title": "You Make It Feel Like Christmas (feat. Blake Shelton)",
+    "artist": "Gwen Stefani",
+    "album": "You Make It Feel Like Christmas",
+    "coverUrl": "https://images.unsplash.com/photo-1515169067750-d51a73b55163?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    "duration": 156.773,
+    "lyrics": []
+  },
+  {
+    "id": "5e9TFTbltYBg2xThimr0rU",
+    "title": "The Chain - 2004 Remaster",
+    "artist": "Fleetwood Mac",
+    "album": "Rumours (Super Deluxe)",
+    "coverUrl": "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    "duration": 270.213,
+    "lyrics": []
+  },
+  {
+    "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+    "title": "Take on Me",
+    "artist": "a-ha",
+    "album": "Hunting High and Low",
+    "coverUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    "duration": 225.28,
+    "lyrics": []
+  },
+  {
+    "id": "3QiAAp20rPC3dcAtKtMaqQ",
+    "title": "Blue Christmas",
+    "artist": "Elvis Presley",
+    "album": "Elvis' Christmas Album",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+    "duration": 129.173,
+    "lyrics": []
+  },
+  {
+    "id": "3YZE5qDV7u1ZD1gZc47ZeR",
+    "title": "Underneath the Tree",
+    "artist": "Kelly Clarkson",
+    "album": "Wrapped In Red",
+    "coverUrl": "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    "duration": 229.64,
+    "lyrics": []
+  },
+  {
+    "id": "3ZOEytgrvLwQaqXreDs2Jx",
+    "title": "Can't Stop",
+    "artist": "Red Hot Chili Peppers",
+    "album": "By the Way (Deluxe Edition)",
+    "coverUrl": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    "duration": 269.0,
+    "lyrics": []
+  },
+  {
+    "id": "7MmG8p0F9N3C4AXdK6o6Eb",
+    "title": "Outside (feat. Ellie Goulding)",
+    "artist": "Calvin Harris",
+    "album": "Motion",
+    "coverUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    "duration": 227.267,
+    "lyrics": []
+  },
+  {
+    "id": "0FDzzruyVECATHXKHFs9eJ",
+    "title": "A Sky Full of Stars",
+    "artist": "Coldplay",
+    "album": "Ghost Stories",
+    "coverUrl": "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=1000&auto=format&fit=crop",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    "duration": 267.867,
+    "lyrics": []
+  }
+]

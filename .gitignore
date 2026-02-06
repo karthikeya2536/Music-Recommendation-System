@@ -7,10 +7,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+.env.local
+backend/serviceAccountKey.json
+
+# Node
 node_modules
 dist
 dist-ssr
 *.local
+
+# Large Data files
+tracks.csv
+*.pt
+*.pth
+dataset*.json
+full_dataset.json
 
 # Editor directories and files
 .vscode/*
