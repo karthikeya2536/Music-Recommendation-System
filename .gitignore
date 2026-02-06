@@ -50,3 +50,11 @@ generate_data_ts.py
 *.txt
 push_error.txt
 song_head.txt
+
+# VS / Legacy from recovering commit
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+tracks.csv
