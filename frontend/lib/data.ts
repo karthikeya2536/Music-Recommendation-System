@@ -20,9 +20,9 @@ export const MOCK_TRACKS: Track[] = [];
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
-export const fetchTrending = async (): Promise<Track[]> => {
+export const fetchTrending = async (limit: number = 20): Promise<Track[]> => {
     try {
-        const res = await fetch(`${API_BASE}/tracks/trending?limit=20`);
+        const res = await fetch(`${API_BASE}/tracks/trending?limit=${limit}`);
         if (!res.ok) throw new Error("Failed to fetch trending");
         const data = await res.json();
         return data.tracks || [];
@@ -32,9 +32,9 @@ export const fetchTrending = async (): Promise<Track[]> => {
     }
 }
 
-export const fetchNewReleases = async (): Promise<Track[]> => {
+export const fetchNewReleases = async (limit: number = 20): Promise<Track[]> => {
     try {
-        const res = await fetch(`${API_BASE}/tracks/new?limit=20`);
+        const res = await fetch(`${API_BASE}/tracks/new?limit=${limit}`);
          if (!res.ok) throw new Error("Failed to fetch new");
         const data = await res.json();
         return data.tracks || [];

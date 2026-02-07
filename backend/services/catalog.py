@@ -26,8 +26,8 @@ class CatalogService:
         if not db:
             return []
         try:
-            # Fetch a larger pool (50) and shuffle them to ensure variety
-            docs = list(db.collection('tracks').limit(50).stream())
+            # Fetch a larger pool (300) and shuffle them to ensure variety
+            docs = list(db.collection('tracks').limit(300).stream())
             results = [d.to_dict() for d in docs]
             
             import random
@@ -43,8 +43,8 @@ class CatalogService:
         if not db:
             return []
         try:
-            # Sort by year descending and fetch a pool of 50
-            query = db.collection('tracks').order_by('year', direction=firestore.Query.DESCENDING).limit(50)
+            # Sort by year descending and fetch a pool of 300
+            query = db.collection('tracks').order_by('year', direction=firestore.Query.DESCENDING).limit(300)
             docs = list(query.stream())
             results = [d.to_dict() for d in docs]
             
@@ -55,7 +55,7 @@ class CatalogService:
         except Exception as e:
             print(f"Error fetching new releases (trying fallback): {e}")
             # Fallback
-            docs = list(db.collection('tracks').limit(50).stream())
+            docs = list(db.collection('tracks').limit(300).stream())
             results = [d.to_dict() for d in docs]
             
             import random
