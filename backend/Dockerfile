@@ -2,36 +2,34 @@
 FROM python:3.9-slim
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /code
 
-# Install system dependencies (if any needed for torch/numpy usually)
-# and clean up to keep image size small
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file into the container at /app/backend/
+# Copy the requirements file
 COPY backend/requirements.txt ./backend/requirements.txt
 
-# Install any needed packages specified in requirements.txt
+# Install packages
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# Copy the rest of the backend code
-COPY backend ./backend
+# Create a non-root user (Hugging Face expects UID 1000)
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
 
-# Copy the recommendation engine (models and scripts)
-COPY recommendation_engine ./recommendation_engine
+WORKDIR $HOME/app
 
-# Copy dataset.json as it is referenced by recommendation service
-COPY dataset.json ./dataset.json
-# Also copy serviceAccountKey.json if it exists in backend (it should be there for now)
-# Note: In production you'd mount this as a secret volume usage, but for this "Industrial Grade" 
-# upgrade of an existing repo, copying it if present is the immediate step. 
-# We'll assume the user handles the key placement.
+# Copy the rest of the backend code and models
+COPY --chown=user backend ./backend
+COPY --chown=user recommendation_engine ./recommendation_engine
+COPY --chown=user dataset.json ./dataset.json
 
-# Make port 8000 available to the world outside this container
-EXPOSE 8000
+# Hugging Face Spaces uses 7860
+EXPOSE 7860
 
-# Run the app. 
-# We run from /app so "from backend.main" works
+# Run the app.
 CMD ["python", "-m", "backend.main"]
