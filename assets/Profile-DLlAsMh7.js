@@ -1,0 +1,36 @@
+import{j as a,q as d,n as x,k as e}from"./index-DIkIOw7Q.js";import{P as h}from"./PageTransition-C8No0BOM.js";import{C as o}from"./clock-DNRadi8w.js";/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const m=a("Bell",[["path",{d:"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9",key:"1qo2s2"}],["path",{d:"M10.3 21a1.94 1.94 0 0 0 3.4 0",key:"qgo35s"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const p=a("ChevronRight",[["path",{d:"m9 18 6-6-6-6",key:"mthhwq"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const g=a("CreditCard",[["rect",{width:"20",height:"14",x:"2",y:"5",rx:"2",key:"ynyp8z"}],["line",{x1:"2",x2:"22",y1:"10",y2:"10",key:"1b3vmo"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const u=a("LogOut",[["path",{d:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",key:"1uf3rs"}],["polyline",{points:"16 17 21 12 16 7",key:"1gabdz"}],["line",{x1:"21",x2:"9",y1:"12",y2:"12",key:"1uyos4"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const y=a("Settings",[["path",{d:"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z",key:"1qme2f"}],["circle",{cx:"12",cy:"12",r:"3",key:"1v7zrd"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const b=a("Shield",[["path",{d:"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",key:"oel41y"}]]);/**
+ * @license lucide-react v0.379.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const j=a("Smartphone",[["rect",{width:"14",height:"20",x:"5",y:"2",rx:"2",ry:"2",key:"1yt0o3"}],["path",{d:"M12 18h.01",key:"mhygvu"}]]);function w(){const{user:s,logout:r,library:i}=d(),{playTrack:n}=x();return s?e.jsx(h,{children:e.jsxs("div",{className:"min-h-screen pt-28 px-8 pb-32 max-w-5xl mx-auto",children:[e.jsxs("div",{className:"flex flex-col md:flex-row items-end gap-6 mb-12",children:[e.jsxs("div",{className:"relative group",children:[e.jsx("img",{src:s.avatar,alt:s.name,className:"w-32 h-32 rounded-full border-4 border-sonic-800 shadow-2xl"}),e.jsx("div",{className:"absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer",children:e.jsx("span",{className:"text-xs font-bold",children:"Change"})})]}),e.jsxs("div",{className:"flex-1 mb-2",children:[e.jsxs("div",{className:"flex items-center gap-3 mb-1",children:[e.jsx("h1",{className:"text-4xl font-bold text-white",children:s.name}),e.jsx("span",{className:"px-2 py-0.5 rounded text-[10px] font-bold bg-gradient-to-r from-yellow-400 to-orange-500 text-black uppercase tracking-wider",children:s.plan})]}),e.jsx("p",{className:"text-gray-400",children:s.email})]}),e.jsxs("button",{onClick:r,className:"px-6 py-2 rounded-full border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all text-sm font-medium flex items-center gap-2",children:[e.jsx(u,{size:16})," Sign Out"]})]}),e.jsxs("div",{className:"grid grid-cols-1 lg:grid-cols-3 gap-8",children:[e.jsxs("div",{className:"lg:col-span-1 space-y-6",children:[e.jsxs("div",{className:"bg-white/5 rounded-2xl p-6 border border-white/10",children:[e.jsxs("h3",{className:"text-lg font-bold mb-4 flex items-center gap-2",children:[e.jsx(y,{size:20,className:"text-sonic-accent"})," Account"]}),e.jsxs("div",{className:"space-y-1",children:[e.jsx(l,{icon:g,label:"Manage Subscription"}),e.jsx(l,{icon:b,label:"Privacy & Security"}),e.jsx(l,{icon:m,label:"Notifications"}),e.jsx(l,{icon:j,label:"Connected Devices"})]})]}),e.jsxs("div",{className:"bg-gradient-to-br from-sonic-accent/20 to-blue-600/20 rounded-2xl p-6 border border-sonic-accent/20",children:[e.jsx("h3",{className:"font-bold mb-2",children:"Upgrade to Family Plan"}),e.jsx("p",{className:"text-sm text-gray-300 mb-4",children:"Get 6 Premium accounts for family members living under one roof."}),e.jsx("button",{className:"w-full py-2 bg-white text-black font-bold rounded-lg text-sm hover:scale-105 transition-transform",children:"View Plans"})]})]}),e.jsx("div",{className:"lg:col-span-2",children:e.jsxs("div",{className:"bg-white/5 rounded-2xl border border-white/10 overflow-hidden",children:[e.jsxs("div",{className:"p-6 border-b border-white/10 flex items-center justify-between",children:[e.jsxs("h3",{className:"text-lg font-bold flex items-center gap-2",children:[e.jsx(o,{size:20,className:"text-sonic-accent"})," Listening History"]}),e.jsx("button",{className:"text-xs text-gray-400 hover:text-white",children:"Clear History"})]}),e.jsx("div",{className:"max-h-[500px] overflow-y-auto",children:i.history.length>0?i.history.map((t,c)=>e.jsxs("div",{onClick:()=>n(t),className:"flex items-center gap-4 p-4 hover:bg-white/5 transition-colors cursor-pointer group",children:[e.jsx("img",{src:t.coverUrl,className:"w-12 h-12 rounded bg-gray-800 object-cover",alt:t.title}),e.jsxs("div",{className:"flex-1",children:[e.jsx("h4",{className:"font-medium group-hover:text-sonic-accent transition-colors",children:t.title}),e.jsx("p",{className:"text-xs text-gray-400",children:t.artist})]}),e.jsxs("span",{className:"text-xs text-gray-500 font-mono",children:[Math.floor(t.duration/60),":",Math.floor(t.duration%60).toString().padStart(2,"0")]})]},`${t.id}-${c}`)):e.jsxs("div",{className:"p-12 text-center text-gray-500",children:[e.jsx(o,{size:48,className:"mx-auto mb-4 opacity-20"}),e.jsx("p",{children:"No listening history yet."}),e.jsx("p",{className:"text-xs mt-2",children:"Start playing music to build your history."})]})})]})})]})]})}):null}const l=({icon:s,label:r})=>e.jsxs("button",{className:"w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group",children:[e.jsxs("div",{className:"flex items-center gap-3 text-gray-300 group-hover:text-white",children:[e.jsx(s,{size:18}),e.jsx("span",{className:"text-sm font-medium",children:r})]}),e.jsx(p,{size:16,className:"text-gray-600 group-hover:text-gray-400"})]});export{w as default};
