@@ -26,10 +26,14 @@ class CatalogService:
         if not db:
             return []
         try:
-            # Optimistically fetch 'tracks' collection
-            # In a real app we might have a specific 'trending' aggregation or field
-            docs = db.collection('tracks').limit(limit).stream()
-            return [d.to_dict() for d in docs]
+            # Fetch a larger pool (50) and shuffle them to ensure variety
+            docs = list(db.collection('tracks').limit(50).stream())
+            results = [d.to_dict() for d in docs]
+            
+            import random
+            random.shuffle(results)
+            
+            return results[:limit]
         except Exception as e:
             print(f"Error fetching trending: {e}")
             return []
@@ -39,15 +43,25 @@ class CatalogService:
         if not db:
             return []
         try:
-            # Sort by year descending if available
-            query = db.collection('tracks').order_by('year', direction=firestore.Query.DESCENDING).limit(limit)
-            docs = query.stream()
-            return [d.to_dict() for d in docs]
+            # Sort by year descending and fetch a pool of 50
+            query = db.collection('tracks').order_by('year', direction=firestore.Query.DESCENDING).limit(50)
+            docs = list(query.stream())
+            results = [d.to_dict() for d in docs]
+            
+            import random
+            random.shuffle(results)
+            
+            return results[:limit]
         except Exception as e:
             print(f"Error fetching new releases (trying fallback): {e}")
             # Fallback
-            docs = db.collection('tracks').limit(limit).stream()
-            return [d.to_dict() for d in docs]
+            docs = list(db.collection('tracks').limit(50).stream())
+            results = [d.to_dict() for d in docs]
+            
+            import random
+            random.shuffle(results)
+            
+            return results[:limit]
 
     def search_tracks(self, query: str, limit: int = 20) -> List[Dict]:
         db = get_db()

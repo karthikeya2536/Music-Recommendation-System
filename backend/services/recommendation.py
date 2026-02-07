@@ -56,29 +56,50 @@ class RecommendationService:
             
         # Get internal ID
         u_idx = get_user_idx(user_id, create=False)
-        if u_idx is None:
-            # Cold start: Return random or popular (logic could be expanded)
-            # For now return empty or trigger specific cold start logic
-            return []
+        if u_idx is None or not self.loaded:
+            # Cold start: Return a diverse, randomized set from the full metadata
+            print(f"Cold start for user {user_id}. Returning randomized variety.")
+            if not self.songs_metadata:
+                return []
+            
+            import random
+            # Select up to 50 random samples to ensure "every song" visibility over time
+            pool_size = min(50, len(self.songs_metadata))
+            indices = random.sample(range(len(self.songs_metadata)), pool_size)
+            
+            results = []
+            for idx in indices:
+                song = self.songs_metadata[idx]
+                results.append({
+                    "id": song.get("id"),
+                    "title": song.get("title"),
+                    "artist": song.get("artist"),
+                    "coverUrl": song.get("image_url") or song.get("coverUrl", "https://picsum.photos/200"),
+                    "audioUrl": song.get("audio_url") or song.get("audioUrl")
+                })
+            
+            # Final shuffle for return limit
+            random.shuffle(results)
+            return results[:top_k]
             
         # Check if user index is within embedding range
         # Use shape check
         if u_idx >= self.user_emb.shape[0]:
             print(f"User index {u_idx} out of bounds for model (trained on {self.user_emb.shape[0]})")
-            return []
+            # Fallback to cold start logic
+            return self.get_recommendations("cold-start-fallback", top_k)
 
         # Inference
         try:
             u_vec = self.user_emb[u_idx]
             scores = torch.matmul(self.song_emb, u_vec)
-            top_scores, top_indices = torch.topk(scores, top_k)
+            top_scores, top_indices = torch.topk(scores, top_k * 2) # Get more for diversity
             
             results = []
             for idx_tensor in top_indices:
                 idx = idx_tensor.item()
                 if 0 <= idx < len(self.songs_metadata):
                     song = self.songs_metadata[idx]
-                    # Ensure minimal fields
                     results.append({
                         "id": song.get("id"),
                         "title": song.get("title"),
@@ -86,7 +107,10 @@ class RecommendationService:
                         "coverUrl": song.get("image_url") or song.get("coverUrl", "https://picsum.photos/200"),
                         "audioUrl": song.get("audio_url") or song.get("audioUrl")
                     })
-            return results
+            
+            import random
+            random.shuffle(results)
+            return results[:top_k]
         except Exception as e:
             print(f"Inference error: {e}")
             return []
