@@ -10,6 +10,7 @@ import { InfiniteMovingCards } from '../components/ui/infinite-moving-cards';
 
 import { MOCK_TRACKS, fetchTrending, fetchNewReleases, getRecommendations } from '../lib/data';
 import { getAffinityScore } from '../lib/recommend';
+import { HeroSkeleton, TrackSkeleton } from '../components/ui/Skeleton';
 
 const MOODS = [
   { name: 'Melody', color: 'from-blue-500 to-cyan-400', icon: Wind },
@@ -26,7 +27,7 @@ const TESTIMONIALS = [
   { quote: "Sonicstream changed how I listen to music.", name: "David", title: "Producer" },
 ];
 
-const TrackCard: React.FC<{ track: Track; index: number }> = ({ track, index }) => {
+const TrackCard = React.memo(({ track, index }: { track: Track; index: number }) => {
   const { playTrack, currentTrack, playbackState } = usePlayerStore();
   const isPlayingThis = currentTrack?.id === track.id && playbackState === 'playing';
 
@@ -78,9 +79,9 @@ const TrackCard: React.FC<{ track: Track; index: number }> = ({ track, index }) 
       </div>
     </div>
   );
-};
+});
 
-const NewReleaseCard: React.FC<{ track: Track; index: number }> = ({ track }) => {
+const NewReleaseCard = React.memo(({ track, index }: { track: Track; index: number }) => {
     const { playTrack } = usePlayerStore();
     
     return (
@@ -100,7 +101,7 @@ const NewReleaseCard: React.FC<{ track: Track; index: number }> = ({ track }) =>
           </div>
       </div>
     );
-};
+});
 
 import { PageTransition } from '../components/ui/PageTransition';
 
@@ -247,7 +248,16 @@ const Home = () => {
     loadContent();
   }, [user]);
 
-  if (randomizedContent.parallax.length === 0) return null; // Wait for client hydration
+  if (randomizedContent.parallax.length === 0) {
+      return (
+        <div className="min-h-screen bg-transparent pt-24 space-y-16">
+            <HeroSkeleton />
+            <div className="px-8 flex gap-8 overflow-hidden">
+                 {[1,2,3,4,5].map(i => <TrackSkeleton key={i} />)}
+            </div>
+        </div>
+      );
+  }
 
   const { parallax, trending, newReleases, spotlight, featured } = randomizedContent;
 
