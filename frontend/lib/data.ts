@@ -18,11 +18,11 @@ const FALLBACK_TRACKS: Track[] = [
 
 export const MOCK_TRACKS: Track[] = [];
 
-// --- Dynamic API Fetchers ---
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
 export const fetchTrending = async (): Promise<Track[]> => {
     try {
-        const res = await fetch('/api/v1/tracks/trending?limit=20');
+        const res = await fetch(`${API_BASE}/tracks/trending?limit=20`);
         if (!res.ok) throw new Error("Failed to fetch trending");
         const data = await res.json();
         return data.tracks || [];
@@ -34,7 +34,7 @@ export const fetchTrending = async (): Promise<Track[]> => {
 
 export const fetchNewReleases = async (): Promise<Track[]> => {
     try {
-        const res = await fetch('/api/v1/tracks/new?limit=20');
+        const res = await fetch(`${API_BASE}/tracks/new?limit=20`);
          if (!res.ok) throw new Error("Failed to fetch new");
         const data = await res.json();
         return data.tracks || [];
@@ -47,7 +47,7 @@ export const fetchNewReleases = async (): Promise<Track[]> => {
 export const searchTracks = async (query: string): Promise<Track[]> => {
     if (!query) return [];
     try {
-        const res = await fetch(`/api/v1/tracks/search?q=${encodeURIComponent(query)}`);
+        const res = await fetch(`${API_BASE}/tracks/search?q=${encodeURIComponent(query)}`);
         const data = await res.json();
         return data.tracks || [];
     } catch (e) {
@@ -58,7 +58,7 @@ export const searchTracks = async (query: string): Promise<Track[]> => {
 
 export const getRecommendations = async (userId: string): Promise<Track[]> => {
     try {
-        const res = await fetch(`/api/v1/recommend/${userId}`);
+        const res = await fetch(`${API_BASE}/recommend/${userId}`);
         const data = await res.json();
         return data.recommendations || [];
     } catch (e) {

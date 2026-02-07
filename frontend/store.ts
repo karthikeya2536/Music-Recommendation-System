@@ -58,9 +58,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 }));
 
 // Helper to sync with backend
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+
 const apiCall = async (endpoint: string, method: string, body?: any) => {
     try {
-        await fetch(`/api/v1/library${endpoint}`, {
+        await fetch(`${API_BASE}/library${endpoint}`, {
             method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -104,7 +106,7 @@ export const useAuthStore = create<AuthState>()(
 
             // 2. Fetch Library from Backend
             try {
-                const res = await fetch(`/api/v1/library/${user.uid}`);
+                const res = await fetch(`${API_BASE}/library/${user.uid}`);
                 const data = await res.json();
                 if (data.liked || data.playlists) {
                     set((state) => ({
