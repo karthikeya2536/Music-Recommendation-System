@@ -1,3 +1,12 @@
+---
+title: Sonicstream
+emoji: 🎧
+colorFrom: indigo
+colorTo: blue
+sdk: docker
+pinned: false
+---
+
 <div align="center">
   <img src="public/images/smart-recommendations.png" alt="Sonicstream Hero" width="100%" />
 
