@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file
-COPY backend/requirements.txt ./backend/requirements.txt
+# Copy the requirements file from the root
+COPY requirements.txt .
 
 # Install packages
-RUN pip install --no-cache-dir -r backend/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Create a non-root user (Hugging Face expects UID 1000)
 RUN useradd -m -u 1000 user
@@ -23,13 +23,11 @@ ENV HOME=/home/user \
 
 WORKDIR $HOME/app
 
-# Copy the rest of the backend code and models
-COPY --chown=user backend ./backend
-COPY --chown=user recommendation_engine ./recommendation_engine
-COPY --chown=user dataset.json ./dataset.json
+# Copy the entire project to the container (frontend is ignored via .dockerignore if present, but we need backend and models)
+COPY --chown=user . .
 
 # Hugging Face Spaces uses 7860
 EXPOSE 7860
 
-# Run the app.
+# Run the app from the root context so "import backend" works
 CMD ["python", "-m", "backend.main"]
