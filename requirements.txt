@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+firebase-admin
+python-dotenv
+pydantic-settings
+# Removed --index-url for Vercel compatibility
+torch
+numpy
+pandas

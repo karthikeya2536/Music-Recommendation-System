@@ -48,6 +48,7 @@ process_dataset.py
 test_api*.py
 generate_data_ts.py
 *.txt
+!requirements.txt
 push_error.txt
 song_head.txt
 
