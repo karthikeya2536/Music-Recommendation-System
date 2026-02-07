@@ -208,8 +208,8 @@ const Home = () => {
        try {
            // Fetch Data
            const [trendingData, newReleaseData] = await Promise.all([
-               fetchTrending(),
-               fetchNewReleases()
+               fetchTrending(200),
+               fetchNewReleases(200)
            ]);
            
            // Fetch user recommendations if logged in
@@ -226,7 +226,7 @@ const Home = () => {
            const safePool = displayPool.length > 5 ? displayPool : [...displayPool, ...displayPool, ...displayPool]; // repetition if small
 
            setRandomizedContent({
-               parallax: safePool.slice(0, 15).map((t, index) => ({
+               parallax: safePool.map((t, index) => ({
                    title: t.title,
                    link: `/track/${t.id}`,
                    thumbnail: t.coverUrl,
@@ -236,7 +236,7 @@ const Home = () => {
                })),
                trending: trendingData,
                newReleases: newReleaseData,
-               spotlight: safePool.slice(0, 5),
+               spotlight: [...safePool].sort(() => 0.5 - Math.random()).slice(0, 10),
                featured: safePool[0] || trendingData[0]
            });
 
