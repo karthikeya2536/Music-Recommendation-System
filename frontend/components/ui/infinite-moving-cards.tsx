@@ -38,12 +38,10 @@ export const InfiniteMovingCards = ({
   }, [direction, speed]);
 
   // Robust duplication logic to ensure content fills the screen + buffer
-  // We repeat the items 6 times to create a very long base set.
-  // Then we duplicate THAT base set to create the seamless loop pair [Set A, Set A].
-  // Safe check for items being an array
+  // We reduce duplication from 6x to a minimal required for seamless looping (2x)
+  // this drastically reduces DOM nodes and prevents lag.
   const safeItems = Array.isArray(items) ? items : [];
-  const denseItems = [...safeItems, ...safeItems, ...safeItems, ...safeItems, ...safeItems, ...safeItems];
-  const seamlessItems = [...denseItems, ...denseItems];
+  const seamlessItems = [...safeItems, ...safeItems];
 
   const animationClass = direction === "left" ? "animate-scroll-left" : "animate-scroll-right";
 
@@ -98,7 +96,7 @@ export const InfiniteMovingCards = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap pr-4",
+          "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap pr-4 will-change-transform",
           start && animationClass,
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
