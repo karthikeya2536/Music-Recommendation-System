@@ -15,6 +15,8 @@ export default {
           900: '#0a0a0a',
           800: '#121212',
           700: '#1e1e1e',
+          600: '#2a2a2a',
+          500: '#3a3a3a',
           accent: '#8b5cf6',
           accentHover: '#7c3aed',
         },
