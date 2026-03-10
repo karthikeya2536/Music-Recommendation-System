@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install and Build 🔧
+        env:
+          VITE_API_BASE_URL: https://karthik3241-sonicstream.hf.space/api/v1
         run: |
           cd frontend
           npm install
