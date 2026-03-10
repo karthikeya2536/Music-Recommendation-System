@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         sonic: {
+          950: '#050505',
           900: '#0a0a0a',
           800: '#121212',
           700: '#1e1e1e',
