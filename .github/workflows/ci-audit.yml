@@ -21,7 +21,7 @@ jobs:
       - name: Install frontend dependencies
         run: |
           cd frontend
-          npm ci
+          npm install --no-audit --no-fund
 
       - name: npm audit (fail on high)
         run: |
