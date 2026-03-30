@@ -1,0 +1,1 @@
+import{k as a,l as n}from"./index-CY7PW1c4.js";const e={initial:{opacity:0,y:20},animate:{opacity:1,y:0},exit:{opacity:0,y:-20}},s={type:"tween",ease:"anticipate",duration:.4},r=({children:i,className:t=""})=>a.jsx(n.div,{initial:"initial",animate:"animate",exit:"exit",variants:e,transition:s,className:`w-full h-full ${t}`,children:i});export{r as P};
