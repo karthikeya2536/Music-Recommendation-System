@@ -15,6 +15,14 @@ def get_db():
 def init_db():
     global _db_client
     
+    # Allow CI/test runs to skip real Firestore initialization when requested.
+    # Tests in CI should run without external credentials; setting
+    # SKIP_FIRESTORE_INIT=1 in the job will short-circuit initialization.
+    if os.environ.get('SKIP_FIRESTORE_INIT') == '1':
+        print('Skipping Firestore initialization due to SKIP_FIRESTORE_INIT=1')
+        _db_client = None
+        return
+
     # Check if already initialized to avoid error
     if firebase_admin._apps:
         _db_client = firestore.client()

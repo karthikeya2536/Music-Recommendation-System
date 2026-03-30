@@ -12,6 +12,8 @@ permissions:
 jobs:
   backend-checks:
     runs-on: ubuntu-latest
+    env:
+      SKIP_FIRESTORE_INIT: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
