@@ -1,0 +1,42 @@
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\yemul\Downloads\sonicstream\backend\main.py", line 11, in <module>
+    from backend.api.v1.router import api_router
+  File "C:\Users\yemul\Downloads\sonicstream\backend\api\v1\router.py", line 2, in <module>
+    from backend.api.v1.endpoints import tracks, recommend, library, interactions
+  File "C:\Users\yemul\Downloads\sonicstream\backend\api\v1\endpoints\recommend.py", line 2, in <module>
+    from backend.services.recommendation import recommendation_service
+  File "C:\Users\yemul\Downloads\sonicstream\backend\services\recommendation.py", line 118, in <module>
+    recommendation_service = RecommendationService()
+  File "C:\Users\yemul\Downloads\sonicstream\backend\services\recommendation.py", line 16, in __init__
+    self._load_model()
+  File "C:\Users\yemul\Downloads\sonicstream\backend\services\recommendation.py", line 26, in _load_model
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+C:\Users\yemul\Downloads\sonicstream\backend\services\recommendation.py:26: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at ..\torch\csrc\utils\tensor_numpy.cpp:84.)
+  device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+C:\Users\yemul\Downloads\sonicstream\backend\main.py:27: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [17012]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 10048] error while attempting to bind on address ('0.0.0.0', 7860): only one usage of each socket address (protocol/network address/port) is normally permitted
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+Loading embeddings from C:\Users\yemul\Downloads\sonicstream\recommendation_engine\final_embeddings.pt
+Recommendation model loaded successfully.
+Firestore initialized with C:\Users\yemul\Downloads\sonicstream\backend\serviceAccountKey.json

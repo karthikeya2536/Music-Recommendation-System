@@ -1,0 +1,195 @@
+INFO:     Started server process [17576]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-03-11 01:33:51,088 INFO sonicstream.api request_complete request_id=8c6413ca-fe4d-4302-b0c0-f03f21609ea9 method=GET path=/health status=200 ip=127.0.0.1 duration_ms=2.93
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1773173052.448907   16980 alts_credentials.cc:93] ALTS creds ignored. Not running on GCP and untrusted ALTS is not enabled.
+2026-03-11 01:34:13,008 INFO sonicstream.api request_complete request_id=ed3488ba-2b0d-426c-ac1d-7e1682f7f04a method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=574.67
+2026-03-11 01:34:14,682 INFO sonicstream.api request_complete request_id=11b218cb-bd1c-4d45-b088-c0e3fc654c8c method=GET path=/health status=200 ip=127.0.0.1 duration_ms=0.95
+2026-03-11 01:35:06,238 INFO sonicstream.api request_complete request_id=a7cf233b-a7f0-4d21-b2ba-2d60bd5fb4ee method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=244.38
+2026-03-11 01:35:06,637 INFO sonicstream.api request_complete request_id=716d8908-880b-4af6-8d80-931e04be3011 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=637.23
+2026-03-11 01:35:06,676 INFO sonicstream.api request_complete request_id=b6a56d1f-c601-40c4-93db-dff595f2a129 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=426.21
+2026-03-11 01:35:07,003 INFO sonicstream.api request_complete request_id=b5ca4303-15f2-468e-a9ca-402c65f5255c method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=368.92
+2026-03-11 01:35:07,221 INFO sonicstream.api request_complete request_id=4c18f6f8-3756-412f-bdac-dee497bee803 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=564.32
+2026-03-11 01:35:07,251 INFO sonicstream.api request_complete request_id=d348879a-766b-4689-8730-ffe218a2c5f9 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=567.34
+2026-03-11 01:35:07,826 INFO sonicstream.api request_complete request_id=e321bbd8-59de-44f1-ae0a-a8259de7da9e method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=497.13
+2026-03-11 01:35:07,974 INFO sonicstream.api request_complete request_id=efc24b34-1348-46b4-9eef-3669373a63d0 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=437.22
+2026-03-11 01:35:08,687 INFO sonicstream.audit recommendations_requested request_id=3a475acc-5c98-473d-b7e9-f7dabc86e3fa actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:35:08,688 INFO sonicstream.api request_complete request_id=3a475acc-5c98-473d-b7e9-f7dabc86e3fa method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=350.86
+2026-03-11 01:35:09,476 INFO sonicstream.api request_complete request_id=305e1ade-da6f-41b0-b9b6-a9202d2f1f32 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=409.65
+2026-03-11 01:35:09,496 INFO sonicstream.api request_complete request_id=139be11e-a90f-4c7b-b3bc-c223bdd47154 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=428.79
+2026-03-11 01:35:09,926 INFO sonicstream.api request_complete request_id=2a72ae67-d83b-441d-9cae-792605490dc3 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=425.12
+2026-03-11 01:35:09,972 INFO sonicstream.api request_complete request_id=7cb05799-bca4-4fd8-8fb6-31aa048d6b6b method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=482.91
+2026-03-11 01:35:10,522 INFO sonicstream.api request_complete request_id=35363831-2538-4cd4-ac63-fe9f330d3438 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=699.51
+2026-03-11 01:35:10,639 INFO sonicstream.api request_complete request_id=27f2d2ec-8af8-4f6e-8c38-dfdddf86da27 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=700.29
+2026-03-11 01:35:10,906 INFO sonicstream.api request_complete request_id=4e8ca610-9d77-44dd-b095-8ce39544a020 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=614.15
+2026-03-11 01:35:11,130 INFO sonicstream.api request_complete request_id=87bd606e-a4dc-4a49-aec0-ed6aea521077 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=263.77
+2026-03-11 01:35:11,266 INFO sonicstream.audit recommendations_requested request_id=da802c71-840b-4e4e-b9fc-3a28e558043f actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:35:11,273 INFO sonicstream.api request_complete request_id=da802c71-840b-4e4e-b9fc-3a28e558043f method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=17.29
+2026-03-11 01:35:35,568 INFO sonicstream.audit interaction_recorded request_id=a6e71172-0b09-4feb-8916-72f45a35a2e0 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-tara duration_listened=13.0
+2026-03-11 01:35:35,575 INFO sonicstream.api request_complete request_id=a6e71172-0b09-4feb-8916-72f45a35a2e0 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=251.33
+2026-03-11 01:35:57,903 INFO sonicstream.audit interaction_recorded request_id=de38314f-8675-4510-b88f-34ba019f8214 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-vinaraa-(from-&quot;salaar-cease-fire---telugu&quot;) duration_listened=22.0
+2026-03-11 01:35:57,912 INFO sonicstream.api request_complete request_id=de38314f-8675-4510-b88f-34ba019f8214 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=106.96
+2026-03-11 01:36:07,397 INFO sonicstream.audit interaction_recorded request_id=dd8036ca-7fcf-409e-845e-7af8354c5d3a actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-calendar-song duration_listened=10.0
+2026-03-11 01:36:07,403 INFO sonicstream.api request_complete request_id=dd8036ca-7fcf-409e-845e-7af8354c5d3a method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=135.86
+2026-03-11 01:36:21,754 INFO sonicstream.audit interaction_recorded request_id=0899c3e4-f0b3-49c6-b755-aed30f85ac19 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-needhele duration_listened=9.0
+2026-03-11 01:36:21,759 INFO sonicstream.api request_complete request_id=0899c3e4-f0b3-49c6-b755-aed30f85ac19 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=116.35
+2026-03-11 01:39:26,088 INFO sonicstream.api request_complete request_id=7dde15d2-274b-4e9e-94c6-44f01ccc180f method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=405.56
+2026-03-11 01:40:17,270 INFO sonicstream.api request_complete request_id=6e16fe1e-1d6e-4cdd-aa03-1c1ab7d38516 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=196.61
+2026-03-11 01:40:17,642 INFO sonicstream.api request_complete request_id=d9d05607-c7df-4083-979c-c7d00bc62432 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=570.28
+2026-03-11 01:40:17,656 INFO sonicstream.api request_complete request_id=4a0566e2-2102-4e6c-9b79-f9f54b2ee9fc method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=584.01
+2026-03-11 01:40:17,667 INFO sonicstream.api request_complete request_id=1ca8b9cf-50b9-431d-b934-d61bbf72f1b8 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=279.32
+2026-03-11 01:40:18,146 INFO sonicstream.api request_complete request_id=068e9683-8a72-4c7e-9679-967e7d1a0eaa method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=238.56
+2026-03-11 01:40:18,150 INFO sonicstream.api request_complete request_id=34c45596-13ca-4fe1-a69d-a08baf67746a method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=241.13
+2026-03-11 01:40:18,618 INFO sonicstream.api request_complete request_id=644f16b6-ef0f-44a0-94a0-6dcc8462a6ea method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=683.67
+2026-03-11 01:40:18,631 INFO sonicstream.api request_complete request_id=f002157e-6ab5-4d2c-9754-5e7da17498b5 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=677.82
+2026-03-11 01:40:18,754 INFO sonicstream.audit recommendations_requested request_id=4e34d8c0-8946-4228-adfc-b2dbe836f236 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:40:18,754 INFO sonicstream.api request_complete request_id=4e34d8c0-8946-4228-adfc-b2dbe836f236 method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=4.99
+2026-03-11 01:40:50,200 INFO sonicstream.api request_complete request_id=a04524cd-5412-44a6-84ef-e8bd150e189e method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=216.23
+2026-03-11 01:40:50,215 INFO sonicstream.api request_complete request_id=2bf028b0-46ce-497b-a3d0-147bd7eebc19 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=228.18
+2026-03-11 01:40:50,350 INFO sonicstream.api request_complete request_id=a4c79fd2-2a0d-4721-a680-d1fd3708f357 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=368.2
+2026-03-11 01:40:50,681 INFO sonicstream.api request_complete request_id=909403a7-2f7f-477e-91b4-3ff5b500e832 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=394.18
+2026-03-11 01:40:51,877 INFO sonicstream.api request_complete request_id=04804afe-c067-4004-a676-4908ea091005 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=246.04
+2026-03-11 01:40:51,892 INFO sonicstream.api request_complete request_id=d27ec6d2-a377-40d8-ab08-8fc57574e4a9 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=261.01
+2026-03-11 01:40:51,917 INFO sonicstream.audit recommendations_requested request_id=e834745e-25fa-4d89-a8fe-a9fe21c73d35 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:40:51,918 INFO sonicstream.api request_complete request_id=e834745e-25fa-4d89-a8fe-a9fe21c73d35 method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=4.33
+2026-03-11 01:40:52,294 INFO sonicstream.api request_complete request_id=a6e15f18-40e9-4998-82ee-7ac7a1309e9d method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=634.74
+2026-03-11 01:40:52,306 INFO sonicstream.api request_complete request_id=9a8c00b8-4099-4cde-87b8-a081dff22a32 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=647.29
+2026-03-11 01:41:22,183 INFO sonicstream.api request_complete request_id=609a380f-6729-435b-9103-023dc9cbd09a method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=271.04
+2026-03-11 01:41:22,200 INFO sonicstream.api request_complete request_id=87a52083-41d2-4f33-85d1-960b98a00168 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=290.16
+2026-03-11 01:41:22,213 INFO sonicstream.api request_complete request_id=1f4cc692-0eb5-4aea-aa6f-86e9f80c7cee method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=300.7
+2026-03-11 01:41:22,616 INFO sonicstream.api request_complete request_id=0d22c007-60ac-4891-a50c-73ce9f38cdef method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=409.87
+2026-03-11 01:41:24,033 INFO sonicstream.api request_complete request_id=4394ffa2-21a1-4039-a6a2-0db95b862e92 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=208.67
+2026-03-11 01:41:24,043 INFO sonicstream.api request_complete request_id=befe0abf-8826-47d3-9199-7e5309e88209 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=213.63
+2026-03-11 01:41:24,084 INFO sonicstream.audit recommendations_requested request_id=fe1a13ed-feeb-4810-8908-227bcc352a3e actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:41:24,085 INFO sonicstream.api request_complete request_id=fe1a13ed-feeb-4810-8908-227bcc352a3e method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=4.92
+2026-03-11 01:41:24,508 INFO sonicstream.api request_complete request_id=158800cf-5feb-441d-a9a8-c010d78c2353 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=633.45
+2026-03-11 01:41:24,510 INFO sonicstream.api request_complete request_id=bddcb5c5-5dd4-4219-bf7f-e3593521e507 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=635.32
+2026-03-11 01:41:33,495 INFO sonicstream.api request_complete request_id=b83e5f38-cfa9-4b8f-9a5b-4144f8953454 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=148.04
+2026-03-11 01:42:32,479 INFO sonicstream.api request_complete request_id=fa9601cd-82b3-4dd5-a2f2-fd510e74d2c4 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=357.78
+2026-03-11 01:42:32,482 INFO sonicstream.api request_complete request_id=d0c73ad6-baf2-4502-a21d-ad50fa7e2da7 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=373.33
+2026-03-11 01:42:32,976 INFO sonicstream.api request_complete request_id=994c5484-8a8c-4906-9da1-a2b8af1e07e3 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=485.34
+2026-03-11 01:42:32,984 INFO sonicstream.api request_complete request_id=accba249-0d6f-46bc-ba14-2c08c56677ad method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=482.99
+2026-03-11 01:42:33,487 INFO sonicstream.api request_complete request_id=ca321b77-d10a-4a20-9400-61a0a1c1dc13 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=490.54
+2026-03-11 01:42:33,570 INFO sonicstream.api request_complete request_id=55d150de-5086-4bb6-9298-567a79e12560 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=742.11
+2026-03-11 01:42:33,779 INFO sonicstream.api request_complete request_id=b1e036c7-7e9d-4e70-937b-3a6aa4f80e7c method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=465.74
+2026-03-11 01:42:34,118 INFO sonicstream.audit recommendations_requested request_id=f9a73406-f09c-4947-b7c1-efd9bae631fb actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:42:34,124 INFO sonicstream.api request_complete request_id=f9a73406-f09c-4947-b7c1-efd9bae631fb method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=15.92
+2026-03-11 01:42:34,208 INFO sonicstream.api request_complete request_id=772a9b2d-7e1a-43c1-ac02-338032f9eeef method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=296.68
+2026-03-11 01:42:44,276 INFO sonicstream.audit interaction_recorded request_id=9c2bd754-9580-4326-a850-f9449c46dc03 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-kurchi-madathapetti duration_listened=2.0
+2026-03-11 01:42:44,278 INFO sonicstream.api request_complete request_id=9c2bd754-9580-4326-a850-f9449c46dc03 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=82.87
+2026-03-11 01:43:22,254 INFO sonicstream.audit interaction_recorded request_id=a342e9f2-5eb6-4930-997d-74b51fb1700b actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-jai-balayya-mass-anthem duration_listened=32.0
+2026-03-11 01:43:22,260 INFO sonicstream.api request_complete request_id=a342e9f2-5eb6-4930-997d-74b51fb1700b method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=113.77
+2026-03-11 01:43:33,752 INFO sonicstream.audit interaction_recorded request_id=c0411a2b-b2e0-4759-818d-f97e7f015434 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-undipo duration_listened=5.0
+2026-03-11 01:43:33,756 INFO sonicstream.api request_complete request_id=c0411a2b-b2e0-4759-818d-f97e7f015434 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=98.25
+2026-03-11 01:43:50,173 INFO sonicstream.audit interaction_recorded request_id=b1fcbddb-1541-468c-accd-1d047beed6cf actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-nuvvu-naatho-emannavo duration_listened=5.0
+2026-03-11 01:43:50,177 INFO sonicstream.api request_complete request_id=b1fcbddb-1541-468c-accd-1d047beed6cf method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=108.08
+2026-03-11 01:44:02,496 INFO sonicstream.audit interaction_recorded request_id=7f4a74db-11fe-4e18-9585-f57665ca3fb2 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-undipo duration_listened=12.0
+2026-03-11 01:44:02,496 INFO sonicstream.api request_complete request_id=7f4a74db-11fe-4e18-9585-f57665ca3fb2 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=77.41
+2026-03-11 01:44:15,001 INFO sonicstream.audit interaction_recorded request_id=9304176b-ef5a-41ca-a627-ef9c96c84ed0 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-naa-kanulu-yepudu duration_listened=6.0
+2026-03-11 01:44:15,007 INFO sonicstream.api request_complete request_id=9304176b-ef5a-41ca-a627-ef9c96c84ed0 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=115.09
+2026-03-11 01:44:20,814 INFO sonicstream.audit interaction_recorded request_id=6a2d0293-5970-475f-9e91-e64ee83b9835 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-halamithi-habibo duration_listened=6.0
+2026-03-11 01:44:20,819 INFO sonicstream.api request_complete request_id=6a2d0293-5970-475f-9e91-e64ee83b9835 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=123.2
+2026-03-11 01:45:02,661 INFO sonicstream.audit interaction_recorded request_id=114ee7c6-c978-4022-a68d-02b537319431 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=hero-sri-anjaneya-dandakam duration_listened=38.0
+2026-03-11 01:45:02,666 INFO sonicstream.api request_complete request_id=114ee7c6-c978-4022-a68d-02b537319431 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=132.48
+2026-03-11 01:45:07,373 INFO sonicstream.audit interaction_recorded request_id=f4393e39-8135-4e46-bdf7-c1a29e1fb3ee actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=8LuebslM duration_listened=5.0
+2026-03-11 01:45:07,383 INFO sonicstream.api request_complete request_id=f4393e39-8135-4e46-bdf7-c1a29e1fb3ee method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=87.38
+2026-03-11 01:45:15,927 INFO sonicstream.audit interaction_recorded request_id=c2e60a65-113b-49f8-abe9-d6477759c31d actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=E4DQ0TLy duration_listened=8.0
+2026-03-11 01:45:15,933 INFO sonicstream.api request_complete request_id=c2e60a65-113b-49f8-abe9-d6477759c31d method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=118.24
+2026-03-11 01:46:01,408 INFO sonicstream.audit interaction_recorded request_id=db1afe5e-ca34-4751-aa50-d0b03778330a actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=2zDjA19l duration_listened=46.0
+2026-03-11 01:46:01,411 INFO sonicstream.api request_complete request_id=db1afe5e-ca34-4751-aa50-d0b03778330a method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=86.12
+2026-03-11 01:46:36,529 INFO sonicstream.audit interaction_recorded request_id=b6146300-20f2-4bb9-a4f3-9d74fce14539 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=CVhngnSo duration_listened=34.0
+2026-03-11 01:46:36,536 INFO sonicstream.api request_complete request_id=b6146300-20f2-4bb9-a4f3-9d74fce14539 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=93.0
+2026-03-11 01:46:48,002 INFO sonicstream.audit interaction_recorded request_id=2583bcd3-6c04-42e1-8abf-4f64813314ee actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=95b7e879 duration_listened=12.0
+2026-03-11 01:46:48,010 INFO sonicstream.api request_complete request_id=2583bcd3-6c04-42e1-8abf-4f64813314ee method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=100.2
+2026-03-11 01:47:19,119 INFO sonicstream.api request_complete request_id=19b1eee3-6627-4d7b-a757-3616d7d9af05 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=234.4
+2026-03-11 01:47:19,682 INFO sonicstream.api request_complete request_id=607933f1-ab46-4636-8703-7d0f1e65eb1f method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=246.39
+C:\Users\yemul\AppData\Local\Programs\Python\Python311\Lib\site-packages\google\cloud\firestore_v1\base_collection.py:304: UserWarning: Detected filter using positional arguments. Prefer using the 'filter' keyword argument instead.
+  return query.where(field_path, op_string, value)
+C:\Users\yemul\Downloads\sonicstream\backend\services\catalog.py:78: UserWarning: Detected filter using positional arguments. Prefer using the 'filter' keyword argument instead.
+  .where('title', '<=', q_title + '\uf8ff')\
+2026-03-11 01:47:36,183 INFO sonicstream.api request_complete request_id=65d5f433-200d-4d60-be59-3d634b2717eb method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=84.4
+2026-03-11 01:47:43,015 INFO sonicstream.api request_complete request_id=2cbc8ac0-32c5-4915-9c9b-61c451084525 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=67.27
+2026-03-11 01:47:46,200 INFO sonicstream.api request_complete request_id=cec5c368-f148-4ddb-b22d-684324fd726e method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=69.77
+2026-03-11 01:47:48,128 INFO sonicstream.api request_complete request_id=4d8cc41c-187b-4113-b345-01176baeb7d4 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=66.06
+2026-03-11 01:47:48,781 INFO sonicstream.api request_complete request_id=388e0a9f-664f-44f1-ba40-2a0c728fb726 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=64.93
+2026-03-11 01:47:49,742 INFO sonicstream.api request_complete request_id=853832e5-81d7-4f00-81ed-eecd21aba383 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=79.37
+2026-03-11 01:47:51,925 INFO sonicstream.audit interaction_recorded request_id=5acab955-e669-4527-882d-96267877b606 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=68YCytEz duration_listened=44.0
+2026-03-11 01:47:51,931 INFO sonicstream.api request_complete request_id=5acab955-e669-4527-882d-96267877b606 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=112.31
+2026-03-11 01:48:06,542 INFO sonicstream.api request_complete request_id=be436f16-bf81-4568-a145-8fd44dc6b19e method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=81.11
+2026-03-11 01:48:07,449 INFO sonicstream.api request_complete request_id=31c46f44-88bd-471d-a5ef-d184fcd62954 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=68.06
+2026-03-11 01:48:08,844 INFO sonicstream.audit interaction_recorded request_id=e173cce7-be60-4307-9f37-b1bf5f447ebb actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=qdEWVUKz duration_listened=17.0
+2026-03-11 01:48:08,849 INFO sonicstream.api request_complete request_id=e173cce7-be60-4307-9f37-b1bf5f447ebb method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=78.83
+2026-03-11 01:48:24,079 INFO sonicstream.api request_complete request_id=d1aedf56-8c10-49b9-b1b1-4e6d209463b3 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=248.16
+2026-03-11 01:48:24,411 INFO sonicstream.api request_complete request_id=2c13b810-6f6c-44d3-9376-f6f6c6d358cf method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=562.03
+2026-03-11 01:48:24,429 INFO sonicstream.api request_complete request_id=55966151-de35-4f07-bb30-c831196b11c0 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=324.5
+2026-03-11 01:48:24,758 INFO sonicstream.audit recommendations_requested request_id=e5f48da6-160b-492a-b4ce-7ca791df43a7 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:48:24,764 INFO sonicstream.api request_complete request_id=e5f48da6-160b-492a-b4ce-7ca791df43a7 method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=16.77
+2026-03-11 01:48:24,862 INFO sonicstream.api request_complete request_id=6748e315-4284-480b-bf0b-5d162b80481a method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=438.66
+2026-03-11 01:48:25,307 INFO sonicstream.audit recommendations_requested request_id=e6420d4d-abda-4a8b-8140-d703ccfa613b actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:48:25,310 INFO sonicstream.api request_complete request_id=e6420d4d-abda-4a8b-8140-d703ccfa613b method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=10.02
+2026-03-11 01:49:30,749 INFO sonicstream.api request_complete request_id=8f1db132-9e9b-4763-bc44-f231a0572e4d method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=251.94
+2026-03-11 01:49:31,083 INFO sonicstream.api request_complete request_id=c4ce8dc2-bcd0-4c12-87a1-da03e317d738 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=332.15
+2026-03-11 01:49:42,362 INFO sonicstream.api request_complete request_id=c260ec10-fede-4600-a318-c958c32468d2 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=83.56
+2026-03-11 01:49:45,049 INFO sonicstream.api request_complete request_id=3fff0621-0a9d-4b63-87e8-712dedd8b7bb method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=66.28
+2026-03-11 01:49:47,528 INFO sonicstream.api request_complete request_id=38319689-1b1c-4bea-9ed4-718f9772b5c9 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=74.62
+2026-03-11 01:49:47,776 INFO sonicstream.api request_complete request_id=3e749c3b-8893-413c-8673-a813e121bd59 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=61.99
+2026-03-11 01:49:50,893 INFO sonicstream.api request_complete request_id=f927bce1-ed54-48d7-9513-f0ce9cab61b9 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=69.71
+2026-03-11 01:49:52,049 INFO sonicstream.api request_complete request_id=e29bbf41-bc12-4f0c-a976-8be1e5707a39 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=56.41
+2026-03-11 01:49:52,863 INFO sonicstream.api request_complete request_id=24287945-d06e-431a-946a-8ebb88592314 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=77.1
+2026-03-11 01:49:55,451 INFO sonicstream.api request_complete request_id=583e44de-8070-42a1-8e94-82b8104f8828 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=84.63
+2026-03-11 01:49:55,701 INFO sonicstream.api request_complete request_id=cb96db1c-d044-42f3-a5ea-cfd665811d81 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=79.31
+2026-03-11 01:49:59,372 INFO sonicstream.api request_complete request_id=25f04628-36f8-4997-95bc-cc825628f5e0 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=259.45
+2026-03-11 01:49:59,669 INFO sonicstream.api request_complete request_id=2b77b7e5-10c1-4c9d-9368-1d776b0586db method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=243.28
+2026-03-11 01:49:59,911 INFO sonicstream.api request_complete request_id=fe3cc992-cd3f-4165-886a-ea871a01bdd3 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=225.6
+2026-03-11 01:50:00,001 INFO sonicstream.audit recommendations_requested request_id=59140251-e70c-42e4-b55c-3c6f4805c56e actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:50:00,001 INFO sonicstream.api request_complete request_id=59140251-e70c-42e4-b55c-3c6f4805c56e method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=7.13
+2026-03-11 01:50:00,181 INFO sonicstream.api request_complete request_id=b51bc475-425c-4000-aec0-fbe7f985aacf method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=195.86
+2026-03-11 01:50:00,573 INFO sonicstream.audit recommendations_requested request_id=1748c540-1b5d-4132-875b-0c9cc5624935 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:50:00,575 INFO sonicstream.api request_complete request_id=1748c540-1b5d-4132-875b-0c9cc5624935 method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=11.88
+2026-03-11 01:52:29,226 INFO sonicstream.audit interaction_recorded request_id=849655f0-8f64-4ed3-a427-f923b6f753dc actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=6KCYJHd6 duration_listened=128.0
+2026-03-11 01:52:29,233 INFO sonicstream.api request_complete request_id=849655f0-8f64-4ed3-a427-f923b6f753dc method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=127.89
+2026-03-11 01:58:52,480 INFO sonicstream.api request_complete request_id=c04f1226-31aa-48cf-9fe4-eeedbbf7c590 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=643.19
+2026-03-11 01:58:52,669 INFO sonicstream.api request_complete request_id=288c5164-fb37-49c4-8da0-988ef3698110 method=GET path=/api/v1/tracks/new status=200 ip=127.0.0.1 duration_ms=844.47
+2026-03-11 01:58:52,724 INFO sonicstream.api request_complete request_id=bd9d0a03-d90d-48d8-912e-e580ada5fbd0 method=GET path=/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=225.57
+2026-03-11 01:58:52,787 INFO sonicstream.api request_complete request_id=52f8105e-2f39-4041-b47f-5455ce4beb46 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=968.59
+2026-03-11 01:58:52,851 INFO sonicstream.audit recommendations_requested request_id=22698e0f-147f-4fb1-8318-2ec8e3b7f4a7 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 result_count=20
+2026-03-11 01:58:52,854 INFO sonicstream.api request_complete request_id=22698e0f-147f-4fb1-8318-2ec8e3b7f4a7 method=GET path=/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2 status=200 ip=127.0.0.1 duration_ms=22.35
+2026-03-11 02:00:03,987 INFO sonicstream.audit interaction_recorded request_id=483f089e-b04e-4954-b13f-e0336cfe5363 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=2AKS1HhpLu2rgkojECUm3V duration_listened=4.0
+2026-03-11 02:00:03,992 INFO sonicstream.api request_complete request_id=483f089e-b04e-4954-b13f-e0336cfe5363 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=110.88
+2026-03-11 02:00:45,609 INFO sonicstream.audit interaction_recorded request_id=eb6e55dd-f1b1-4666-83c0-613f6fc261ac actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=zlj3uHto duration_listened=41.0
+2026-03-11 02:00:45,616 INFO sonicstream.api request_complete request_id=eb6e55dd-f1b1-4666-83c0-613f6fc261ac method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=362.71
+2026-03-11 02:01:40,687 INFO sonicstream.audit interaction_recorded request_id=b05e4064-bbad-4f5d-ba94-775cbededb50 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=AN1zv7KP duration_listened=55.0
+2026-03-11 02:01:40,694 INFO sonicstream.api request_complete request_id=b05e4064-bbad-4f5d-ba94-775cbededb50 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=104.77
+2026-03-11 02:03:41,982 INFO sonicstream.audit interaction_recorded request_id=1705cdc8-0e21-4056-9e50-7f074ae8175e actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=0Ou3BrWt duration_listened=76.0
+2026-03-11 02:03:42,010 INFO sonicstream.api request_complete request_id=1705cdc8-0e21-4056-9e50-7f074ae8175e method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=146.31
+2026-03-11 02:04:43,407 INFO sonicstream.audit interaction_recorded request_id=1ffaedfb-a78c-434d-a2d8-35528637c193 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=0ZAIvPgi duration_listened=56.0
+2026-03-11 02:04:43,416 INFO sonicstream.api request_complete request_id=1ffaedfb-a78c-434d-a2d8-35528637c193 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=136.25
+2026-03-11 02:05:05,191 INFO sonicstream.api request_complete request_id=4908dd26-87fe-4559-b73d-1e1d0eb63807 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=244.14
+2026-03-11 02:05:05,642 INFO sonicstream.api request_complete request_id=59de3398-bf7f-471a-be13-6b17c8e12f89 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=71.15
+2026-03-11 02:05:05,755 INFO sonicstream.api request_complete request_id=a9f18694-1c51-4bd3-84ad-17e04cafd44e method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=236.7
+2026-03-11 02:05:15,049 INFO sonicstream.api request_complete request_id=75548e95-1acd-43a6-bb0b-936df27cc9b2 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=64.07
+2026-03-11 02:05:20,279 INFO sonicstream.api request_complete request_id=9818c2b7-1b48-496d-b068-9ccf01777997 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=73.02
+2026-03-11 02:05:21,389 INFO sonicstream.api request_complete request_id=de0659fe-c625-4f38-89b0-137c920f8381 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=58.11
+2026-03-11 02:05:24,469 INFO sonicstream.api request_complete request_id=2ea2e741-3835-42eb-a290-675769bf1b3d method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=65.54
+2026-03-11 02:05:25,299 INFO sonicstream.api request_complete request_id=911e0b43-2836-40af-acc0-570c42230f85 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=62.72
+2026-03-11 02:05:25,575 INFO sonicstream.api request_complete request_id=2f180691-344a-40ae-a0d5-cf95a61c2394 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=74.53
+2026-03-11 02:05:25,959 INFO sonicstream.api request_complete request_id=3b0c75c8-4563-42c9-96d3-27ceaa01415c method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=70.2
+2026-03-11 02:05:33,289 INFO sonicstream.api request_complete request_id=8a432876-7698-4194-8318-15ea78701371 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=51.24
+2026-03-11 02:06:20,039 INFO sonicstream.api request_complete request_id=5179f573-8407-43ba-98f5-99e9624f1530 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=70.44
+2026-03-11 02:06:21,275 INFO sonicstream.api request_complete request_id=bfa8bd7a-fd5c-40d4-ba89-3bd428bd7c4e method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=67.86
+2026-03-11 02:06:23,783 INFO sonicstream.api request_complete request_id=afeb9b3e-dbb7-4b6c-b0db-13a17c851cc8 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=61.34
+2026-03-11 02:06:34,571 INFO sonicstream.api request_complete request_id=21475418-8eae-47bd-bfdb-ee01b87ca1bb method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=72.27
+2026-03-11 02:06:35,048 INFO sonicstream.api request_complete request_id=a07d1588-6cd0-4938-9a00-60f25c2a3c9c method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=74.23
+2026-03-11 02:06:53,232 INFO sonicstream.audit interaction_recorded request_id=f837c5f3-4fe7-4d5b-b091-bd4145250c22 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=e1f9b76c duration_listened=129.0
+2026-03-11 02:06:53,239 INFO sonicstream.api request_complete request_id=f837c5f3-4fe7-4d5b-b091-bd4145250c22 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=115.42
+2026-03-11 02:07:38,919 INFO sonicstream.audit interaction_recorded request_id=8d94a00e-6481-4c0c-b17e-7dcc9d354646 actor_uid=ZzGQHlDgKWdEowIPiRQHX8PCJAn2 song_id=WjogCmuG duration_listened=46.0
+2026-03-11 02:07:38,922 INFO sonicstream.api request_complete request_id=8d94a00e-6481-4c0c-b17e-7dcc9d354646 method=POST path=/api/v1/interactions/track status=200 ip=127.0.0.1 duration_ms=80.27
+2026-03-11 02:07:51,697 INFO sonicstream.api request_complete request_id=89adbdcb-2242-4c0e-828c-22f90d75c182 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=105.25
+2026-03-11 02:07:51,923 INFO sonicstream.api request_complete request_id=02fe9a38-234a-4abd-aa7b-6e32c3190dfb method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=66.72
+2026-03-11 02:07:53,383 INFO sonicstream.api request_complete request_id=f70115a7-dba2-4c12-b3a4-1e9c846bc6d7 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=60.86
+2026-03-11 02:07:56,336 INFO sonicstream.api request_complete request_id=280395f9-bc30-4454-a1a2-22c319d42e56 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=61.24
+2026-03-11 02:08:01,229 INFO sonicstream.api request_complete request_id=2e3a5211-86b9-4622-a8b1-e99bd4e000b8 method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=218.65
+2026-03-11 02:08:01,791 INFO sonicstream.api request_complete request_id=ecb5a8e7-effd-4174-90cc-c48b2d0f998d method=GET path=/api/v1/tracks/trending status=200 ip=127.0.0.1 duration_ms=238.92
+2026-03-11 02:08:12,869 INFO sonicstream.api request_complete request_id=fb4cc8c6-6155-4d39-86af-f791ec969cf0 method=GET path=/api/v1/tracks/search status=200 ip=127.0.0.1 duration_ms=66.6

@@ -76,7 +76,7 @@ export const HeroParallax = ({
           <InfiniteMovingCards
             items={firstRow}
             direction="right"
-            speed="slow"
+            speed="fast"
             className="w-full"
             noMask={true}
             renderItem={(product) => <ProductCard product={product} />}
@@ -86,7 +86,7 @@ export const HeroParallax = ({
           <InfiniteMovingCards
             items={secondRow}
             direction="left"
-            speed="slow"
+            speed="fast"
             className="w-full"
             noMask={true}
             renderItem={(product) => <ProductCard product={product} />}
@@ -96,7 +96,7 @@ export const HeroParallax = ({
           <InfiniteMovingCards
             items={thirdRow}
             direction="right"
-            speed="slow"
+            speed="fast"
             className="w-full"
             noMask={true}
             renderItem={(product) => <ProductCard product={product} />}

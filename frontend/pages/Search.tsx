@@ -1,26 +1,36 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search as SearchIcon, Play, TrendingUp, Hash, Mic2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { usePlayerStore } from '../store';
 import { Track } from '../types';
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card';
-import { MOCK_TRACKS, getAllArtists, searchTracks } from '../lib/data';
+import { searchTracks, fetchTrending } from '../lib/data';
 import { PageTransition } from '../components/ui/PageTransition';
+import { MotionDiv } from '../lib/motion';
 
 import { useSearchParams } from 'react-router-dom';
-
-const TRENDING_SEARCHES = ['Devi Sri Prasad', 'Thaman S', 'Sid Sriram', 'Anirudh', 'Keeravani'];
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
   const [query, setQuery] = useState(initialQuery);
   const [artists, setArtists] = useState<string[]>([]);
+  const [trendingSearches, setTrendingSearches] = useState<string[]>([]);
 
   // Sync state with URL if URL changes (e.g. back button)
   useEffect(() => {
      setQuery(searchParams.get('q') || '');
   }, [searchParams]);
+
+  useEffect(() => {
+     // Fetch trending to populate artists
+     fetchTrending(50).then(tracks => {
+         const allArtistsStr = tracks.map(t => t.artist).filter(Boolean);
+         const splitArtists = allArtistsStr.flatMap(a => a.split(',')).map(a => a.trim()).filter(a => a.toLowerCase() !== 'nan' && a.length > 0);
+         const uniqueArtists = Array.from(new Set(splitArtists));
+         setArtists(uniqueArtists.slice(0, 24)); // Put some in grid
+         setTrendingSearches(uniqueArtists.slice(0, 5)); // Put top 5 in trending
+     });
+  }, []);
 
   const genre = searchParams.get('genre');
 
@@ -57,7 +67,8 @@ export default function Search() {
                 // Determine if we need to call explicit genre API or just use search with param
                 // Our data.ts only has searchTracks(query). Let's modify data.ts or just call fetch manually here?
                 // Better to update data.ts to support genre, but for now:
-                const res = await fetch(`/api/v1/tracks/search?genre=${encodeURIComponent(genre)}`);
+                const apiBase = import.meta.env.VITE_API_BASE_URL || '';
+                const res = await fetch(`${apiBase}/tracks/search?genre=${encodeURIComponent(genre)}`);
                 const data = await res.json();
                 tracks = data.tracks || [];
             } else {
@@ -89,7 +100,7 @@ export default function Search() {
     <PageTransition>
       <div className="min-h-screen pt-28 px-8 pb-32">
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <MotionDiv 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="relative mb-6"
@@ -103,10 +114,10 @@ export default function Search() {
               className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-14 pr-6 text-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sonic-accent focus:bg-white/10 transition-all shadow-xl"
               autoFocus
             />
-          </motion.div>
+          </MotionDiv>
 
           {!query && (
-              <motion.div 
+              <MotionDiv 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="flex flex-wrap items-center gap-3 mb-12"
@@ -115,7 +126,7 @@ export default function Search() {
                       <TrendingUp size={16} />
                       <span>TRENDING</span>
                   </div>
-                  {TRENDING_SEARCHES.map((tag, i) => (
+                  {trendingSearches.map((tag, i) => (
                       <button 
                           key={tag}
                           onClick={() => updateQuery(tag)}
@@ -124,7 +135,7 @@ export default function Search() {
                           {tag}
                       </button>
                   ))}
-              </motion.div>
+              </MotionDiv>
           )}
 
           <div className="space-y-4">
@@ -167,7 +178,7 @@ export default function Search() {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                       {artists.map((artist, i) => (
-                          <motion.div
+                          <MotionDiv
                               key={artist}
                               initial={{ opacity: 0, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1 }}
@@ -186,7 +197,7 @@ export default function Search() {
                                   </CardItem>
                                   </CardBody>
                               </CardContainer>
-                          </motion.div>
+                          </MotionDiv>
                       ))}
                   </div>
             </div>

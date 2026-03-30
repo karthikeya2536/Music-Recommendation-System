@@ -8,61 +8,9 @@ import { trackListen } from '../lib/tracker';
 import { AlbumArt } from './player/AlbumArt';
 import { ProgressControl } from './player/ProgressControl';
 
-// Helper to find Audio URL via JioSaavn
-const CACHE_KEY = 'sonic_audio_cache_v1';
-
-const fetchAudioUrl = async (query: string): Promise<string[]> => {
-    // 1. Check Cache
-    try {
-        const cached = localStorage.getItem(CACHE_KEY);
-        if (cached) {
-            const cacheMap = JSON.parse(cached);
-            if (cacheMap[query]) {
-                console.log(`[Player] Cache Hit for: ${query}`);
-                return cacheMap[query];
-            }
-        }
-    } catch (e) {
-        console.warn("Cache read failed", e);
-    }
-
-    // 2. Fetch from API (saavn.sumit.co)
-    try {
-        const targetUrl = `https://saavn.sumit.co/api/search/songs?query=${encodeURIComponent(query)}`;
-        console.log(`[Player] Searching API (Slow): ${targetUrl}`);
-        const start = Date.now();
-        
-        const response = await fetch(targetUrl);
-        const data = await response.json();
-        
-        const duration = Date.now() - start;
-        console.log(`[Player] Search completed in ${(duration/1000).toFixed(2)}s`);
-
-        if (data.success && data.data && data.data.results && data.data.results.length > 0) {
-            const song = data.data.results[0];
-            const downloadUrls = song.downloadUrl;
-            
-            if (Array.isArray(downloadUrls) && downloadUrls.length > 0) {
-               const urls = downloadUrls.map((d: any) => d.url).reverse().filter(Boolean);
-               
-               // 3. Update Cache
-               try {
-                   const cached = localStorage.getItem(CACHE_KEY);
-                   const cacheMap = cached ? JSON.parse(cached) : {};
-                   cacheMap[query] = urls;
-                   // Simple limit: keep last 50? For now just unbound.
-                   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheMap));
-               } catch (e) {
-                   console.warn("Cache write failed (Quota?)", e);
-               }
-
-               return urls;
-            }
-        }
-    } catch (e) {
-        console.error("JioSaavn search failed", e);
-    }
-    return [];
+const resolveTrackStreamUrl = (audioUrl: string | null | undefined): string | null => {
+    const url = (audioUrl || '').trim();
+    return url.length > 0 ? url : null;
 };
 
 export default function Player() {
@@ -125,7 +73,7 @@ export default function Player() {
           const seconds = listenedSeconds.current;
           
           if (seconds > 0) {
-              trackListen(prevTrack.id, user.id, seconds, prevTrack.duration);
+              trackListen(prevTrack.id, seconds, prevTrack.duration);
           }
       }
 
@@ -138,100 +86,42 @@ export default function Player() {
   
   // Playback State
   const [streamUrl, setStreamUrl] = useState<string | null>(null);
-  const [candidateUrls, setCandidateUrls] = useState<string[]>([]);
-  const [currentUrlIndex, setCurrentUrlIndex] = useState(0);
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   // Derived State
   const isLiked = currentTrack ? library.liked.includes(currentTrack.id) : false;
 
-  // Reset and Fetch Audio URL when track changes
+  // Use track-provided audio URL to preserve title/audio correctness.
   useEffect(() => {
       if (!currentTrack) return;
 
-      let isMounted = true;
-      const trackIdAtStart = currentTrack.id;
+      const exactTrackUrl = resolveTrackStreamUrl(currentTrack.audioUrl);
 
       console.log(`[Player] Track Changed: ${currentTrack.title}. Resetting...`);
-      
-      // IMMEDIATE RESET to prevent "Previous Song" ghosting
+
       setStreamUrl(null);
-      setCandidateUrls([]);
-      setCurrentUrlIndex(0);
       setIsEnhancing(true);
       setIsLoading(true);
-      setIsExpanded(true); // Auto-Expand
+      setIsExpanded(true);
 
-      const loadAudio = async () => {
-          // 1. Better Query Engineering
-          // 1. Better Query Engineering
-          // Robust cleanup: remove (...) content, split multiple artists
-          const rawArtist = currentTrack.artist.replace(/\(.*\)/g, '').trim();
-          const primaryArtist = rawArtist.split(/,|&|feat\.|ft\.|with/i)[0].trim();
-          
-          const cleanTitle = currentTrack.title.replace(/\(.*\)/g, '').replace(/[^a-zA-Z0-9 ]/g, ' ').trim();
-          
-          // Strategy 1: Title + Primary Artist
-          let query = `${cleanTitle} ${primaryArtist} Audio`;
-          console.log(`[Player] Strategy 1: ${query}`);
-          let urls = await fetchAudioUrl(query);
+      if (!exactTrackUrl) {
+          console.error(`[Player] Missing audio URL for track: ${currentTrack.id}`);
+          setIsEnhancing(false);
+          setIsLoading(false);
+          return;
+      }
 
-          // Strategy 2: Title + Album (if different from title)
-          if (urls.length === 0 && currentTrack.album && currentTrack.album !== currentTrack.title) {
-             const albumQuery = `${cleanTitle} ${currentTrack.album} Song`;
-             console.log(`[Player] Strategy 2: ${albumQuery}`);
-             urls = await fetchAudioUrl(albumQuery);
-          }
+      setStreamUrl(exactTrackUrl);
+  }, [currentTrack?.id, currentTrack?.audioUrl]);
 
-          // Strategy 3: Just Title (Broad fallback)
-          if (urls.length === 0) {
-             console.warn("[Player] Strict search failed. Trying broad search...");
-             urls = await fetchAudioUrl(`${cleanTitle} Song`);
-          }
-
-          // RACE CONDITION CHECK:
-          // If the user clicked another song while we were fetching, ABORT.
-          if (!isMounted || trackIdAtStart !== usePlayerStore.getState().currentTrack?.id) {
-               console.log("[Player] Race condition detected. Ignoring stale result for:", currentTrack.title);
-               return;
-          }
-
-          if (urls.length > 0) {
-              console.log(`[Player] Found ${urls.length} candidate URLs for ${currentTrack.title}`);
-              setCandidateUrls(urls);
-              setStreamUrl(urls[0]); // Start with the first one
-              setCurrentUrlIndex(0);
-          } else {
-              console.error("[Player] No audio found for this track.");
-              setIsEnhancing(false);
-              setIsLoading(false);
-              // Optionally trigger next track or error state?
-          }
-      };
-
-      loadAudio();
-
-      return () => {
-          isMounted = false;
-      };
-  }, [currentTrack?.id]);
-
-  // Handle URL Fallback on Error
+  // Stop playback if the selected track URL fails.
   const handleAudioError = (e: any) => {
       console.error("[Player] Native Audio Error:", e);
-      
-      if (candidateUrls.length > 0 && currentUrlIndex < candidateUrls.length - 1) {
-          const nextIndex = currentUrlIndex + 1;
-          console.log(`[Player] Retrying with candidate #${nextIndex}...`);
-          setCurrentUrlIndex(nextIndex);
-          setStreamUrl(candidateUrls[nextIndex]);
-          // Don't stop loading yet, we are trying again
-      } else {
-          console.error("[Player] All candidate URLs failed.");
-          setIsLoading(false);
-          setIsEnhancing(false);
-          togglePlay(); // Stop trying to play
+      setIsLoading(false);
+      setIsEnhancing(false);
+      if (playbackState === 'playing') {
+          togglePlay();
       }
   };
 
@@ -496,3 +386,4 @@ export default function Player() {
     </>
   );
 }
+

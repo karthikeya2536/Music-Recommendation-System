@@ -1,0 +1,148 @@
+{
+  "status": "ok",
+  "base_url": "http://127.0.0.1:8000",
+  "results": [
+    {
+      "name": "health",
+      "url": "http://127.0.0.1:8000/health",
+      "expected_status": 200,
+      "actual_status": 200,
+      "duration_ms": 8.25,
+      "ok": true,
+      "response": {
+        "status": "ok",
+        "version": "1.0.0",
+        "timestamp": "2026-03-10T19:49:37.785569+00:00"
+      }
+    },
+    {
+      "name": "ready",
+      "url": "http://127.0.0.1:8000/ready",
+      "expected_status": 200,
+      "actual_status": 200,
+      "duration_ms": 34.91,
+      "ok": true,
+      "response": {
+        "status": "ready",
+        "checks": {
+          "database": true,
+          "recommendation_artifacts": true
+        },
+        "details": {
+          "recommendation": {
+            "embeddings_exists": true,
+            "dataset_exists": true,
+            "embeddings_path": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine/final_embeddings.pt",
+            "dataset_path": "C:\\Users\\yemul\\Downloads\\sonicstream\\dataset.json",
+            "registry": {
+              "path": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine\\model_registry.json",
+              "exists": true,
+              "active_model": "hnn_v1_default",
+              "has_active_record": true,
+              "artifact_paths": {
+                "embeddings": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine/final_embeddings.pt",
+                "hnn_model": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine/hnn_model.pth",
+                "mf_model": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine/mf_model.pth",
+                "dataset": "C:\\Users\\yemul\\Downloads\\sonicstream\\dataset.json"
+              },
+              "artifact_exists": {
+                "embeddings": true,
+                "hnn_model": true,
+                "mf_model": true,
+                "dataset": true
+              },
+              "valid": true
+            },
+            "service_initialized": true,
+            "service_loaded": true
+          },
+          "catalog_cache": {
+            "hits": 9,
+            "misses": 12,
+            "entries": 10,
+            "ttl_seconds": 20,
+            "max_keys": 256
+          }
+        }
+      }
+    },
+    {
+      "name": "metrics-json",
+      "url": "http://127.0.0.1:8000/metrics",
+      "expected_status": 200,
+      "actual_status": 200,
+      "duration_ms": 20.35,
+      "ok": true,
+      "response": {
+        "status": "ok",
+        "uptime_seconds": 191.82,
+        "counters": {
+          "total_requests": 31,
+          "total_errors": 0,
+          "status_code_counts": {
+            "200": 31
+          },
+          "method_counts": {
+            "GET": 31
+          },
+          "path_counts": {
+            "/health": 3,
+            "/api/v1/tracks/new": 6,
+            "/api/v1/tracks/trending": 8,
+            "/api/v1/library/ZzGQHlDgKWdEowIPiRQHX8PCJAn2": 2,
+            "/api/v1/recommend/ZzGQHlDgKWdEowIPiRQHX8PCJAn2": 4,
+            "/api/v1/tracks/search": 7,
+            "/ready": 1
+          },
+          "auth_failures": {
+            "missing_token": 0,
+            "firebase_unavailable": 0,
+            "invalid_token": 0,
+            "missing_uid_claim": 0,
+            "uid_mismatch": 0,
+            "admin_not_configured": 0,
+            "admin_denied": 0
+          },
+          "catalog_cache": {
+            "hits": 9,
+            "misses": 12,
+            "entries": 10,
+            "ttl_seconds": 20,
+            "max_keys": 256
+          },
+          "rate_limit_bucket_keys": 1,
+          "sample_size": 31
+        },
+        "latency_ms": {
+          "avg": 180.81,
+          "p95": 670.98,
+          "max": 1355.04
+        }
+      }
+    },
+    {
+      "name": "metrics-prometheus",
+      "url": "http://127.0.0.1:8000/metrics/prometheus",
+      "expected_status": 200,
+      "actual_status": 200,
+      "duration_ms": null,
+      "ok": true,
+      "response": {}
+    },
+    {
+      "name": "library-unauthorized",
+      "url": "http://127.0.0.1:8000/api/v1/library/smoke_user",
+      "expected_status": 401,
+      "actual_status": 401,
+      "duration_ms": 22.89,
+      "ok": true,
+      "response": {
+        "error": {
+          "code": "http_error",
+          "message": "Missing bearer token",
+          "request_id": "be14b271-6e65-4445-b22c-c266bd3e588f"
+        }
+      }
+    }
+  ]
+}

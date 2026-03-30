@@ -1,0 +1,22 @@
+{
+  "active_model": "hnn_v1_default",
+  "models": {
+    "hnn_v1_default": {
+      "created_at": "2026-03-11T00:00:00Z",
+      "notes": "Initial registry baseline for Sonicstream recommendation artifacts",
+      "artifacts": {
+        "embeddings": "recommendation_engine/final_embeddings.pt",
+        "hnn_model": "recommendation_engine/hnn_model.pth",
+        "mf_model": "recommendation_engine/mf_model.pth",
+        "dataset": "dataset.json"
+      },
+      "metrics": {
+        "offline": {
+          "precision_at_20": null,
+          "recall_at_20": null,
+          "ndcg_at_20": null
+        }
+      }
+    }
+  }
+}

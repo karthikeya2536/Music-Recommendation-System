@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Clock, Disc, ListMusic, BarChart3, RotateCcw, Flame, Play, Mic2 } from 'lucide-react';
 import { useAuthStore } from '../store';
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card';
-import { getAllAlbums, getAllArtists, MOCK_TRACKS } from '../lib/data';
 
 const TABS = [
   { id: 'playlists', label: 'Playlists', icon: ListMusic },
@@ -16,6 +14,7 @@ const TABS = [
 
 import { PageTransition } from '../components/ui/PageTransition';
 import { usePlayerStore } from '../store';
+import { MotionDiv } from '../lib/motion';
 
 export default function Library() {
   const { isAuthenticated, user, library } = useAuthStore();
@@ -23,16 +22,40 @@ export default function Library() {
   const [activeTab, setActiveTab] = React.useState('playlists');
   const [albums, setAlbums] = useState<string[]>([]);
   const [artists, setArtists] = useState<string[]>([]);
+  const [likedTracks, setLikedTracks] = useState<any[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-     // Load dynamic data
-     // Optimization: Load only first 100 to avoid freezing UI
-     const allAlbums = getAllAlbums().slice(0, 100);
-     const allArtists = getAllArtists().slice(0, 100);
-     setAlbums(allAlbums);
-     setArtists(allArtists);
-  }, []);
+     // Extract unique albums and artists from user's history
+     const allUserTracks = [...library.history];
+
+     const uniqueAlbums = Array.from(new Set(allUserTracks.map(t => t.album).filter(Boolean)));
+     const uniqueArtists = Array.from(new Set(allUserTracks.map(t => t.artist).filter(Boolean)));
+     
+     setAlbums(uniqueAlbums as string[]);
+     setArtists(uniqueArtists as string[]);
+  }, [library]);
+
+  // Fetch liked song details when liked IDs change
+  useEffect(() => {
+      const fetchLiked = async () => {
+          // Try to find liked songs in history first
+          const found: any[] = [];
+          const missing: string[] = [];
+          for (const id of library.liked) {
+              const histTrack = library.history.find(t => t.id === id);
+              if (histTrack) {
+                  found.push(histTrack);
+              } else {
+                  missing.push(id);
+              }
+          }
+          // For missing ones, try searching by ID (best effort)
+          // In production this should be a dedicated endpoint
+          setLikedTracks(found);
+      };
+      fetchLiked();
+  }, [library.liked, library.history]);
 
   if (!isAuthenticated) {
     return (
@@ -54,8 +77,24 @@ export default function Library() {
     );
   }
 
-  // Helper to get random image for album/artist
-  const getCover = (id: number) => `https://picsum.photos/id/${(id % 50) + 150}/300/300`;
+  // Calculate stats
+  const totalSeconds = library.history.reduce((acc, t) => acc + (t.duration || 0), 0);
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  
+  const genreCounts: Record<string, number> = {};
+  library.history.forEach(t => {
+      if (t.genre) {
+          genreCounts[t.genre] = (genreCounts[t.genre] || 0) + 1;
+      }
+  });
+  let topGenre = "Unknown";
+  let maxCount = 0;
+  Object.entries(genreCounts).forEach(([genre, count]) => {
+      if (count > maxCount) {
+          maxCount = count;
+          topGenre = genre;
+      }
+  });
 
   return (
     <PageTransition>
@@ -77,9 +116,9 @@ export default function Library() {
                       <BarChart3 size={80} />
                   </div>
                   <h3 className="text-gray-400 text-sm font-medium mb-1">Minutes Listened</h3>
-                  <div className="text-3xl font-bold text-white mb-2">1,248</div>
+                  <div className="text-3xl font-bold text-white mb-2">{totalMinutes.toLocaleString()}</div>
                   <div className="text-green-400 text-xs flex items-center gap-1">
-                      <TrendingUpIcon /> +12% vs last week
+                      <TrendingUpIcon /> Keeping track
                   </div>
               </div>
               
@@ -88,7 +127,7 @@ export default function Library() {
                       <Flame size={80} />
                   </div>
                   <h3 className="text-gray-400 text-sm font-medium mb-1">Top Genre</h3>
-                  <div className="text-3xl font-bold text-white mb-2">Pop</div>
+                  <div className="text-3xl font-bold text-white mb-2">{topGenre}</div>
                   <div className="text-sonic-accent text-xs">Based on activity</div>
               </div>
 
@@ -117,7 +156,7 @@ export default function Library() {
                 <Icon size={18} />
                 {tab.label}
                 {isActive && (
-                  <motion.div 
+                  <MotionDiv 
                     layoutId="activeTab"
                     className="absolute bottom-[-17px] left-0 right-0 h-0.5 bg-sonic-accent"
                   />
@@ -127,7 +166,7 @@ export default function Library() {
           })}
         </div>
 
-        <motion.div
+        <MotionDiv
           key={activeTab}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,8 +188,14 @@ export default function Library() {
                         <CardContainer key={playlist.id || i} className="inter-var w-full">
                             <CardBody className="bg-white/5 relative group/card border-white/[0.1] w-full h-auto rounded-xl p-4 border hover:border-sonic-accent/30 transition-colors">
                                 <CardItem translateZ="50" className="w-full">
-                                <div className="aspect-square bg-sonic-800 rounded-lg mb-4 shadow-lg overflow-hidden w-full">
-                                    <img src={playlist.coverUrl || getCover(i)} alt="Playlist" className="w-full h-full object-cover" />
+                                <div className="aspect-square bg-sonic-800 rounded-lg mb-4 shadow-lg overflow-hidden w-full relative">
+                                    {playlist.coverUrl ? (
+                                        <img src={playlist.coverUrl} alt="Playlist" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                                            <ListMusic size={40} className="text-white/50" />
+                                        </div>
+                                    )}
                                 </div>
                                 </CardItem>
                                 <CardItem translateZ="40" className="font-bold truncate text-white w-full">
@@ -169,23 +214,27 @@ export default function Library() {
           {/* LIKED SONGS VIEW */}
           {activeTab === 'liked' && (
              <>
-                {library.liked.length === 0 ? (
+                {likedTracks.length === 0 ? (
                     <div className="col-span-full text-center py-20 text-gray-500">
                          <Heart size={48} className="mx-auto mb-4 opacity-50" />
                          <p>No liked songs yet.</p>
                          <p className="text-xs mt-2">Tap the heart icon on any song to save it here.</p>
                     </div>
                 ) : (
-                    library.liked.map((trackId: string) => {
-                         const track = MOCK_TRACKS.find(t => t.id === trackId);
-                         if (!track) return null;
+                    likedTracks.map((track: any) => {
                          return (
                             <CardContainer key={track.id} className="inter-var w-full cursor-pointer">
                                 <CardBody className="bg-white/5 relative group/card border-white/[0.1] w-full h-auto rounded-xl p-4 border hover:border-sonic-accent/30 transition-colors">
                                     <div onClick={() => playTrack(track)}>
                                         <CardItem translateZ="50" className="w-full">
                                         <div className="aspect-square bg-sonic-800 rounded-lg mb-4 shadow-lg overflow-hidden w-full relative">
-                                            <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
+                                            {track.coverUrl ? (
+                                                <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
+                                            ) : (
+                                                <div className="w-full h-full bg-gradient-to-br from-pink-600 to-red-600 flex items-center justify-center">
+                                                    <Heart size={40} className="text-white/50" />
+                                                </div>
+                                            )}
                                              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity">
                                                  <Play fill="white" className="text-white" />
                                              </div>
@@ -247,12 +296,47 @@ export default function Library() {
           ))}
           
            {(activeTab === 'history') && (
-               <div className="col-span-full text-center py-20 text-gray-500">
-                   <p>No history yet.</p>
-               </div>
+               <>
+                   {library.history.length === 0 ? (
+                       <div className="col-span-full text-center py-20 text-gray-500">
+                           <Clock size={48} className="mx-auto mb-4 opacity-50" />
+                           <p>No history yet.</p>
+                           <p className="text-xs mt-2">Start playing music to build your history.</p>
+                       </div>
+                   ) : (
+                       library.history.map((track: any, i: number) => (
+                           <CardContainer key={`${track.id}-${i}`} className="inter-var w-full cursor-pointer">
+                               <CardBody className="bg-white/5 relative group/card border-white/[0.1] w-full h-auto rounded-xl p-4 border hover:border-sonic-accent/30 transition-colors">
+                                   <div onClick={() => playTrack(track)}>
+                                       <CardItem translateZ="50" className="w-full">
+                                       <div className="aspect-square bg-sonic-800 rounded-lg mb-4 shadow-lg overflow-hidden w-full relative">
+                                           {track.coverUrl ? (
+                                               <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
+                                           ) : (
+                                               <div className="w-full h-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center">
+                                                   <Clock size={40} className="text-white/20" />
+                                               </div>
+                                           )}
+                                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity">
+                                                <Play fill="white" className="text-white" />
+                                            </div>
+                                       </div>
+                                       </CardItem>
+                                       <CardItem translateZ="40" className="font-bold truncate text-white w-full">
+                                       {track.title}
+                                       </CardItem>
+                                       <CardItem translateZ="30" className="text-sm text-gray-400 mt-1">
+                                       {track.artist}
+                                       </CardItem>
+                                   </div>
+                               </CardBody>
+                           </CardContainer>
+                       ))
+                   )}
+               </>
            )}
 
-        </motion.div>
+        </MotionDiv>
       </div>
     </PageTransition>
   );

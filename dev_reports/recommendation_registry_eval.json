@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "registry_path": "C:\\Users\\yemul\\Downloads\\sonicstream\\recommendation_engine\\model_registry.json",
+  "active_model": "hnn_v1_default",
+  "checks": {
+    "embeddings_exists": true,
+    "dataset_exists": true,
+    "runtime_numpy_major": 1,
+    "user_embedding_rows": 100,
+    "song_embedding_rows": 22960,
+    "dataset_rows": 10000
+  },
+  "warnings": [
+    "Dataset/song embedding count mismatch: dataset=10000 embeddings=22960"
+  ]
+}

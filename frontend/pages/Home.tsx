@@ -1,9 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Play, Wind, Zap, Brain, Sparkles, Mic2, Star } from 'lucide-react';
 import { usePlayerStore, useAuthStore } from '../store';
 import { Track } from '../types';
+import { MotionDiv } from '../lib/motion';
 import { CardContainer, CardBody, CardItem } from '../components/ui/3d-card';
 import { HeroParallax } from '../components/ui/hero-parallax';
 import { InfiniteMovingCards } from '../components/ui/infinite-moving-cards';
@@ -19,13 +19,7 @@ const MOODS = [
   { name: 'Folk', color: 'from-yellow-400 to-orange-500', icon: Mic2 },
 ];
 
-const TESTIMONIALS = [
-  { quote: "The sound quality is unmatched.", name: "Alex", title: "Audiophile" },
-  { quote: "Finally a music app that looks as good as it sounds.", name: "Sarah", title: "Designer" },
-  { quote: "The 3D experience is mind-blowing.", name: "Mike", title: "Developer" },
-  { quote: "Discovery mode found my new favorite band.", name: "Jessica", title: "Music Lover" },
-  { quote: "Sonicstream changed how I listen to music.", name: "David", title: "Producer" },
-];
+
 
 const TrackCard = React.memo(({ track, index }: { track: Track; index: number }) => {
   const { playTrack, currentTrack, playbackState } = usePlayerStore();
@@ -117,12 +111,12 @@ const STICKY_CONTENT = [
          <div className="text-center">
             <div className="flex -space-x-4 justify-center mb-6">
                {[1,2,3,4].map(i => (
-                  <img key={i} src={`https://picsum.photos/id/${100+i}/100/100`} className="w-12 h-12 rounded-full border-4 border-emerald-500" alt="User" />
+                  <img key={i} src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`} className="w-12 h-12 rounded-full border-4 border-emerald-500 bg-white" alt="User" />
                ))}
                <div className="w-12 h-12 rounded-full border-4 border-emerald-500 bg-black/40 text-white flex items-center justify-center font-bold text-xs">+5</div>
             </div>
             <h3 className="text-2xl font-bold mb-2">Party Mode Active</h3>
-            <p className="opacity-90">5 contributors • 42 tracks</p>
+            <p className="opacity-90">Collaborate with friends in real-time</p>
          </div>
       </div>
     ),
@@ -139,9 +133,9 @@ const STICKY_CONTENT = [
              <div className="bg-red-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2 animate-pulse">
                 <span className="w-2 h-2 bg-white rounded-full" /> LIVE
              </div>
-             <img src="https://picsum.photos/id/338/200/200" className="w-32 h-32 rounded-full border-4 border-red-500 shadow-2xl mb-4" alt="Live User" />
-             <h3 className="text-xl font-bold">DJ Sonic</h3>
-             <p className="text-purple-200">1.2k listeners</p>
+             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=live" className="w-32 h-32 rounded-full border-4 border-red-500 shadow-2xl mb-4 bg-white" alt="Live User" />
+             <h3 className="text-xl font-bold">Live Session</h3>
+             <p className="text-purple-200">Tune in with others</p>
          </div>
       </div>
     ),
@@ -158,7 +152,7 @@ const STICKY_CONTENT = [
                     key={i} 
                     className="w-full bg-white rounded-t-sm animate-pulse" 
                     style={{ 
-                        height: `${Math.random() * 80 + 20}%`,
+                        height: `${((i * 37 + 13) % 80) + 20}%`,
                         animationDelay: `${i * 0.05}s`
                     }} 
                   />
@@ -177,11 +171,11 @@ const STICKY_CONTENT = [
       "AI that knows your taste better than you. Our neural engine analyzes your listening habits to curate daily mixes that you'll actually love. Say goodbye to skipping.",
     content: (
       <div className="h-full w-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white">
-        <img
-          src="/images/smart-recommendations.png"
-          className="h-full w-full object-cover"
-          alt="A futuristic abstract AI music visualization"
-        />
+        <div className="text-center">
+            <Brain size={64} className="mx-auto mb-4 opacity-80" />
+            <h3 className="text-3xl font-black mb-2">Neural Engine</h3>
+            <p className="font-mono text-sm opacity-70">Powered by AI</p>
+        </div>
       </div>
     ),
   },
@@ -217,13 +211,17 @@ const Home = () => {
            if (user?.id) {
                recs = await getRecommendations(user.id);
            }
-           if (recs.length > 0) setRecommendations(recs);
+           if (recs.length > 0) setRecommendations([...recs].sort(() => 0.5 - Math.random()).slice(0, 20));
 
            // Construct UI structure
            // Since we don't have massive mock data anymore, we reuse fetched data for display
            // to ensure the UI looks populated even if DB is small.
            const displayPool = [...trendingData, ...newReleaseData];
            const safePool = displayPool.length > 5 ? displayPool : [...displayPool, ...displayPool, ...displayPool]; // repetition if small
+
+           // Randomly select a subset to prevent DOM bloat and lag (keeping ~20 items)
+           const trendingDisplay = [...trendingData].sort(() => 0.5 - Math.random()).slice(0, 20);
+           const newReleasesDisplay = [...newReleaseData].sort(() => 0.5 - Math.random()).slice(0, 20);
 
            setRandomizedContent({
                parallax: safePool.map((t, index) => ({
@@ -233,9 +231,9 @@ const Home = () => {
                    artist: t.artist,
                    audioUrl: t.audioUrl,
                    lyrics: t.lyrics || ""
-               })),
-               trending: trendingData,
-               newReleases: newReleaseData,
+               })).sort(() => 0.5 - Math.random()).slice(0, 15),
+               trending: trendingDisplay.length > 0 ? trendingDisplay : trendingData,
+               newReleases: newReleasesDisplay.length > 0 ? newReleasesDisplay : newReleaseData,
                spotlight: [...safePool].sort(() => 0.5 - Math.random()).slice(0, 10),
                featured: safePool[0] || trendingData[0]
            });
@@ -276,7 +274,7 @@ const Home = () => {
              <h3 className="text-2xl font-bold text-white mb-8 text-center uppercase tracking-widest opacity-80">Vibe Check</h3>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {MOODS.map((mood, i) => (
-                  <motion.div
+                  <MotionDiv
                     key={mood.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -290,7 +288,7 @@ const Home = () => {
                         <mood.icon className="text-white" size={32} />
                         <span className="font-bold text-lg">{mood.name}</span>
                      </div>
-                  </motion.div>
+                  </MotionDiv>
                 ))}
              </div>
           </section>
@@ -302,14 +300,19 @@ const Home = () => {
                  Trending Now
                  <div className="h-1.5 w-24 bg-gradient-to-r from-sonic-accent to-transparent rounded-full mt-1" />
                </h3>
-               <button className="text-sm text-gray-400 hover:text-white transition-colors">View All</button>
+               <button 
+                  onClick={() => navigate('/search')}
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+               >
+                  View All
+               </button>
             </div>
             
             <div className="relative w-full">
               <InfiniteMovingCards
                 items={trending}
                 direction="right"
-                speed="slow"
+                speed="fast"
                 renderItem={(track) => (
                   <div className="mx-4">
                     <TrackCard track={track} index={0} />
@@ -323,7 +326,7 @@ const Home = () => {
           <section className="px-8 max-w-7xl mx-auto">
                <div className="relative rounded-3xl overflow-hidden bg-sonic-800 border border-white/10 group">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
-                  <div className="absolute inset-0 bg-[url('https://picsum.photos/id/56/1200/600')] bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700" />
+                  {featured && <div className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url(${featured.coverUrl})` }} />}
                   
                   <div className="relative z-20 p-12 flex flex-col md:flex-row items-center gap-12">
                      <div className="w-full md:w-1/2 space-y-6">
@@ -354,21 +357,23 @@ const Home = () => {
              <h3 className="text-3xl font-bold text-white mb-8">Artist Spotlight</h3>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 relative h-[400px] rounded-3xl overflow-hidden group">
-                   <img 
-                      src="https://picsum.photos/id/338/800/600" 
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      alt="Featured Artist"
-                   />
+                   {spotlight[0] && (
+                       <img 
+                          src={spotlight[0].coverUrl} 
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                          alt="Featured Artist"
+                       />
+                   )}
                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                    <div className="absolute bottom-0 left-0 p-8">
                       <div className="flex items-center gap-2 text-sonic-accent mb-2">
                          <Star size={16} fill="currentColor" />
                          <span className="text-sm font-bold tracking-wider">RISING STAR</span>
                       </div>
-                      <h2 className="text-4xl font-bold mb-4">Luna Echo</h2>
-                      <p className="text-gray-300 max-w-lg mb-6">Redefining ambient pop with ethereal vocals and deep, resonating basslines.</p>
+                      <h2 className="text-4xl font-bold mb-4">{spotlight[0]?.artist || "Featured Artist"}</h2>
+                      <p className="text-gray-300 max-w-lg mb-6">Discover the top tracks that are charting in this week's spotlight.</p>
                       <button className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white text-white hover:text-black transition-all">
-                         View Profile
+                         View Selected
                       </button>
                    </div>
                 </div>
@@ -389,14 +394,17 @@ const Home = () => {
                                <img src={track.coverUrl} className="w-10 h-10 rounded object-cover" alt="Track" />
                                <div className="flex-1 overflow-hidden">
                                   <div className="font-medium text-sm group-hover/track:text-sonic-accent transition-colors truncate">{track.title}</div>
-                                  <div className="text-xs text-gray-500 truncate">{Math.floor(Math.random() * 50) / 10 + 1}M Plays</div>
+                                  <div className="text-xs text-gray-500 truncate">{((track.title.length * 7 + 3) % 50) / 10 + 0.5}M Plays</div>
                                </div>
                                <Play size={14} className="opacity-0 group-hover/track:opacity-100" />
                             </div>
                          ))}
                       </div>
                    </div>
-                   <button className="w-full py-3 mt-4 text-sm font-bold text-center border-t border-white/10 hover:text-sonic-accent transition-colors">
+                   <button 
+                     onClick={() => navigate(`/search?q=${encodeURIComponent(spotlight[0]?.artist || '')}`)}
+                     className="w-full py-3 mt-4 text-sm font-bold text-center border-t border-white/10 hover:text-sonic-accent transition-colors"
+                   >
                       See Discography
                    </button>
                 </div>
@@ -412,7 +420,7 @@ const Home = () => {
                   <InfiniteMovingCards
                     items={newReleases}
                     direction="right"
-                    speed="slow"
+                    speed="fast"
                     renderItem={(track) => (
                       <div className="mx-4">
                         <NewReleaseCard track={track} index={0} />
@@ -434,7 +442,7 @@ const Home = () => {
                <InfiniteMovingCards
                   items={recommendations.length > 0 ? recommendations : trending}
                   direction="right"
-                  speed="slow"
+                  speed="fast"
                   renderItem={(track) => (
                       <div className="mx-4">
                         <TrackCard track={track} index={0} />

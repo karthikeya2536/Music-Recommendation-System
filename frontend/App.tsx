@@ -50,6 +50,17 @@ function AnimatedRoutes() {
                       <Profile />
                     </ProtectedRoute>
                   } />
+                  
+                  {/* 404 Catch-all */}
+                  <Route path="*" element={
+                    <div className="min-h-screen flex items-center justify-center flex-col gap-4 text-center px-4">
+                      <h1 className="text-6xl font-bold text-white">404</h1>
+                      <p className="text-xl text-gray-400">Page not found</p>
+                      <a href="/" className="px-6 py-3 bg-sonic-accent text-white rounded-full font-bold hover:opacity-90 transition-opacity mt-4">
+                        Go Home
+                      </a>
+                    </div>
+                  } />
                 </Routes>
             </Suspense>
         </ErrorBoundary>

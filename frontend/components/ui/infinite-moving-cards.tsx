@@ -26,11 +26,11 @@ export const InfiniteMovingCards = ({
     if (containerRef.current) {
         let duration = "40s";
         if (speed === "fast") {
-          duration = "40s";
+          duration = "120s";
         } else if (speed === "normal") {
           duration = "160s";
         } else {
-          duration = "400s";
+          duration = "250s";
         }
         containerRef.current.style.setProperty("--animation-duration", duration);
         setStart(true);

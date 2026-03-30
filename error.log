@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\yemul\Downloads\sonicstream\backend\main.py", line 10, in <module>
+    from backend.db.firestore import init_db
+  File "C:\Users\yemul\Downloads\sonicstream\backend\db\firestore.py", line 6, in <module>
+    settings = get_settings()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\yemul\Downloads\sonicstream\backend\core\config.py", line 40, in get_settings
+    return Settings()
+           ^^^^^^^^^^
+  File "C:\Users\yemul\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic_settings\main.py", line 171, in __init__
+    super().__init__(
+  File "C:\Users\yemul\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+recaptcha_secret_key
+  Extra inputs are not permitted [type=extra_forbidden, input_value='6LfLtWQSAAAAAlchjqNtHgOvTSNKmKT8AEwygvov5', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/extra_forbidden

@@ -68,4 +68,6 @@ export interface AuthState {
   toggleLike: (trackId: string) => void;
   addToHistory: (track: Track) => void;
   createPlaylist: (title: string) => void;
+  clearHistory: () => void;
+  updateAvatar: (url: string) => void;
 }

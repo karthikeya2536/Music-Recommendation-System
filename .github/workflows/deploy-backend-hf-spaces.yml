@@ -1,0 +1,67 @@
+name: Deploy backend to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - 'Dockerfile'
+      - 'requirements.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    environment: Production
+    env:
+      # Default HF space repo (assumption). Override by setting the HF_SPACE_REPO secret.
+      HF_SPACE_REPO: ${{ secrets.HF_SPACE_REPO || 'karthik3241/sonicstream' }}
+      # Optional allowed origins to be written into a secrets.env in the space repo.
+      HF_ALLOWED_ORIGINS: ${{ secrets.HF_ALLOWED_ORIGINS || '' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare backend bundle
+        run: |
+          set -e
+          rm -rf hf_deploy
+          mkdir hf_deploy
+          # Copy backend and supporting files the space may need (Dockerfile, requirements)
+          cp -r backend hf_deploy/backend
+          if [ -f Dockerfile ]; then cp Dockerfile hf_deploy/; fi
+          if [ -f requirements.txt ]; then cp requirements.txt hf_deploy/; fi
+          # Optionally create a simple secrets.env with ALLOWED_ORIGINS if provided.
+          if [ -n "${HF_ALLOWED_ORIGINS}" ]; then
+            echo "ALLOWED_ORIGINS=${HF_ALLOWED_ORIGINS}" > hf_deploy/secrets.env
+          fi
+
+      - name: Commit and push to Hugging Face Space
+        env:
+          HF_API_TOKEN: ${{ secrets.HF_API_TOKEN }}
+          HF_SPACE_REPO: ${{ env.HF_SPACE_REPO }}
+        run: |
+          set -e
+          cd hf_deploy
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy backend to Hugging Face Space via GitHub Actions" || true
+          # Push to the Hugging Face Spaces repo using the API token. This will overwrite the remote main branch.
+          git push --force "https://${HF_API_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}.git" HEAD:main
+
+      - name: Done
+        run: |
+          echo "Backend pushed to Hugging Face Space: ${HF_SPACE_REPO}"
+          echo "You can verify logs and set runtime secrets in the Spaces UI."
+
+# Notes:
+# - This workflow assumes you have a Hugging Face API token stored in the repository secret HF_API_TOKEN.
+# - The HF_SPACE_REPO is assumed to be "karthik3241/sonicstream" by default; override it by setting the HF_SPACE_REPO secret.
+# - Storing sensitive runtime environment variables in plain files is not recommended. If you require secure runtime secrets,
+#   configure them in the Hugging Face Spaces UI (Settings → Secrets) after deployment. This workflow optionally writes a
+#   `secrets.env` file if `HF_ALLOWED_ORIGINS` is provided, which some simple apps read on startup. Adjust as needed.

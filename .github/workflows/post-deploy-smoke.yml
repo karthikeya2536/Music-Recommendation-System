@@ -1,0 +1,49 @@
+name: Post Deploy Smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: Base URL of deployed API (without trailing slash)
+        required: true
+        type: string
+      probe_user_id:
+        description: User ID used for authorization checks
+        required: true
+        default: smoke_user
+        type: string
+      forbidden_user_id:
+        description: Different user ID used for forbidden checks
+        required: true
+        default: other_user
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run post-deploy smoke checks
+        env:
+          SMOKE_API_BASE_URL: ${{ inputs.api_base_url }}
+          SMOKE_PROBE_USER_ID: ${{ inputs.probe_user_id }}
+          SMOKE_FORBIDDEN_USER_ID: ${{ inputs.forbidden_user_id }}
+          SMOKE_BEARER_TOKEN: ${{ secrets.SMOKE_BEARER_TOKEN }}
+        run: python backend/scripts/post_deploy_smoke.py
+
+      - name: Upload smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-deploy-smoke-report
+          path: dev_reports/post_deploy_smoke_report.json
