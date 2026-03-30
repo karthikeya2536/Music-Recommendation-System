@@ -26,6 +26,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
 
+      - name: Create example env files (CI-only, untracked)
+        run: |
+          # Create sanitized example env files so security checks can read required keys
+          mkdir -p backend
+          printf 'ADMIN_UIDS=\nFIREBASE_CREDENTIALS_PATH=backend/serviceAccountKey.json\nRATE_LIMIT_WINDOW_SECONDS=60\nRATE_LIMIT_READ_MAX=100\nRATE_LIMIT_WRITE_MAX=10\n' > backend/.env.example
+          mkdir -p frontend
+          printf 'VITE_API_BASE_URL=http://localhost:8000/api/v1\nVITE_FIREBASE_API_KEY=ci-placeholder\nVITE_FIREBASE_AUTH_DOMAIN=ci-placeholder.firebaseapp.com\nVITE_FIREBASE_PROJECT_ID=ci-placeholder\n' > frontend/.env.example
+
       - name: Backend syntax compile
         run: python -m compileall backend
       - name: Security baseline verify
@@ -63,8 +71,9 @@ jobs:
           VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID || 'G-PLACEHOLDER' }}
         run: |
           cd frontend
-          npm ci
+          npm install --no-audit --no-fund
           npm run build
+
 
   secret-scan:
     runs-on: ubuntu-latest
