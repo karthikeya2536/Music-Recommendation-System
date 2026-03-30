@@ -51,8 +51,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Deploy backend to Hugging Face Space via GitHub Actions" || true
-          # Push to the Hugging Face Spaces repo using the API token. This will overwrite the remote main branch.
-          git push --force "https://${HF_API_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}.git" HEAD:main
+          # Push to the Hugging Face Spaces repo using the API token passed via an HTTP header.
+          # Using http.extraheader avoids embedding the token in the remote URL and prevents interactive
+          # password prompts in the runner. It also avoids leaking the token into logs.
+          git -c http.extraheader="Authorization: Bearer ${HF_API_TOKEN}" push --force "https://huggingface.co/spaces/${HF_SPACE_REPO}.git" HEAD:main
 
       - name: Done
         run: |
