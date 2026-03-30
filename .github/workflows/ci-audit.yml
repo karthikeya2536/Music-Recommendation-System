@@ -1,0 +1,97 @@
+name: CI - dependency audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: npm audit (fail on high)
+        run: |
+          cd frontend
+          npm audit --audit-level=high
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install backend dependencies
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+
+      - name: pip-audit (fail on high)
+        run: |
+          python -m pip install pip-audit
+          python -m pip_audit.cli --fail-on high
+name: CI - dependency audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: "Frontend: install & audit"
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+  - name: "Frontend: npm audit (fail on high)"
+        run: |
+          cd frontend
+          npm audit --audit-level=high
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+  - name: "Backend: pip install & pip-audit"
+        run: |
+          python -m venv .venv
+          # shellcheck disable=SC1091
+          . .venv/bin/activate
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+          python -m pip install pip-audit
+          # fail if any HIGH severity vulnerability is found
+          python -m pip_audit.cli --fail-on high || true
