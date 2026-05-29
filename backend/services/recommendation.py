@@ -10,7 +10,6 @@ from backend.services.model_registry import get_active_artifact_paths, get_regis
 
 settings = get_settings()
 
-
 def _dataset_path() -> str:
     registry_artifacts = get_active_artifact_paths()
     registry_dataset = registry_artifacts.get('dataset')
@@ -27,14 +26,12 @@ def _dataset_path() -> str:
     )
     return root_dataset
 
-
 def _embeddings_path() -> str:
     registry_artifacts = get_active_artifact_paths()
     registry_embeddings = registry_artifacts.get('embeddings')
     if registry_embeddings:
         return registry_embeddings
     return settings.ABS_EMBEDDINGS_PATH
-
 
 class RecommendationService:
     def __init__(self):
@@ -145,13 +142,11 @@ class RecommendationService:
 
 _recommendation_service: Optional[RecommendationService] = None
 
-
 def get_recommendation_service() -> RecommendationService:
     global _recommendation_service
     if _recommendation_service is None:
         _recommendation_service = RecommendationService()
     return _recommendation_service
-
 
 def get_recommendation_artifact_status() -> Dict[str, bool | str | dict]:
     dataset_path = _dataset_path()

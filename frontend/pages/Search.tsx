@@ -8,6 +8,7 @@ import { PageTransition } from '../components/ui/PageTransition';
 import { MotionDiv } from '../lib/motion';
 
 import { useSearchParams } from 'react-router-dom';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -149,7 +150,7 @@ export default function Search() {
                 className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group"
               >
                 <div className="relative w-16 h-16">
-                  <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover rounded-md" />
+                  <ImageWithFallback src={track.coverUrl} alt={track.title} className="w-full h-full object-cover rounded-md" />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Play fill="white" size={20} className="text-white" />
                   </div>

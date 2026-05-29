@@ -10,12 +10,17 @@ from pathlib import Path
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Register recommendation model artifacts')
-    parser.add_argument('--registry', default='recommendation_engine/model_registry.json')
+    parser = argparse.ArgumentParser(
+        description='Register recommendation model artifacts')
+    parser.add_argument(
+        '--registry', default='recommendation_engine/model_registry.json')
     parser.add_argument('--model-id', required=True)
-    parser.add_argument('--embeddings', default='recommendation_engine/final_embeddings.pt')
-    parser.add_argument('--hnn-model', default='recommendation_engine/hnn_model.pth')
-    parser.add_argument('--mf-model', default='recommendation_engine/mf_model.pth')
+    parser.add_argument(
+        '--embeddings', default='recommendation_engine/final_embeddings.pt')
+    parser.add_argument(
+        '--hnn-model', default='recommendation_engine/hnn_model.pth')
+    parser.add_argument(
+        '--mf-model', default='recommendation_engine/mf_model.pth')
     parser.add_argument('--dataset', default='backend/dataset.json')
     parser.add_argument('--metrics-json', default='{}')
     parser.add_argument('--notes', default='')

@@ -14,6 +14,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse
 
+# Ensure backend module is resolvable
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from backend.api.v1.router import api_router
 from backend.api.v1.schemas import HealthResponse, MetricsResponse, ReadinessResponse
 from backend.core.auth import get_auth_failure_counters
@@ -21,9 +24,6 @@ from backend.core.config import get_settings
 from backend.db.firestore import get_db, init_db
 from backend.services.catalog import catalog_service
 from backend.services.recommendation import get_recommendation_artifact_status
-
-# Ensure backend module is resolvable
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 settings = get_settings()
 _rate_buckets: dict[str, deque[float]] = {}

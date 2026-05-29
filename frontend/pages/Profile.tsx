@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store';
@@ -6,6 +5,7 @@ import { Settings, CreditCard, LogOut, Bell, Shield, Smartphone, Clock, ChevronR
 import { usePlayerStore } from '../store';
 
 import { PageTransition } from '../components/ui/PageTransition';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 export default function Profile() {
   const { user, logout, library, clearHistory, updateAvatar } = useAuthStore();
@@ -47,7 +47,7 @@ export default function Profile() {
         {/* Header */}
         <div className="flex flex-col md:flex-row items-end gap-6 mb-12">
            <div className="relative group" onClick={handleChangeAvatar}>
-              <img src={user.avatar} alt={user.name} className="w-32 h-32 rounded-full border-4 border-sonic-800 shadow-2xl" />
+              <ImageWithFallback src={user.avatar} alt={user.name} className="w-32 h-32 rounded-full border-4 border-sonic-800 shadow-2xl" />
               <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                  <span className="text-xs font-bold">Change</span>
               </div>
@@ -120,7 +120,7 @@ export default function Profile() {
                              onClick={() => playTrack(track)}
                              className="flex items-center gap-4 p-4 hover:bg-white/5 transition-colors cursor-pointer group"
                           >
-                             <img src={track.coverUrl} className="w-12 h-12 rounded bg-gray-800 object-cover" alt={track.title} />
+                             <ImageWithFallback src={track.coverUrl} className="w-12 h-12 rounded bg-gray-800 object-cover" alt={track.title} />
                              <div className="flex-1">
                                 <h4 className="font-medium group-hover:text-sonic-accent transition-colors">{track.title}</h4>
                                 <p className="text-xs text-gray-400">{track.artist}</p>

@@ -21,6 +21,10 @@ const MOODS = [
 
 
 
+const isValidImageUrl = (u?: string) => !!u && !u.includes('/null/') && u.trim() !== '';
+
+const PLACEHOLDER_DATA_URI = `data:image/svg+xml;utf8,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'><rect width='100%' height='100%' fill='%23222' /><text x='50%' y='50%' fill='%23ddd' font-family='Arial, Helvetica, sans-serif' font-size='28' dominant-baseline='middle' text-anchor='middle'>No Image</text></svg>")}`;
+
 const TrackCard = React.memo(({ track, index }: { track: Track; index: number }) => {
   const { playTrack, currentTrack, playbackState } = usePlayerStore();
   const isPlayingThis = currentTrack?.id === track.id && playbackState === 'playing';
@@ -41,8 +45,8 @@ const TrackCard = React.memo(({ track, index }: { track: Track; index: number })
               className="w-full relative"
             >
               <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg">
-                <img
-                  src={track.coverUrl}
+                <ImageWithFallback
+                  src={isValidImageUrl(track.coverUrl) ? track.coverUrl : PLACEHOLDER_DATA_URI}
                   alt={track.title}
                   className="h-full w-full object-cover group-hover/card:scale-110 transition-transform duration-500"
                 />
@@ -83,7 +87,7 @@ const NewReleaseCard = React.memo(({ track, index }: { track: Track; index: numb
           className="group relative aspect-video w-[350px] md:w-[450px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0 z-30"
           onClick={() => playTrack(track)}
       >
-          <img src={track.coverUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={track.title}/>
+          <ImageWithFallback src={isValidImageUrl(track.coverUrl) ? track.coverUrl : PLACEHOLDER_DATA_URI} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={track.title} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
               <h4 className="text-xl font-bold">{track.title}</h4>
               <p className="text-gray-400">{track.artist}</p>
@@ -100,6 +104,7 @@ const NewReleaseCard = React.memo(({ track, index }: { track: Track; index: numb
 import { PageTransition } from '../components/ui/PageTransition';
 
 import { StickyScroll } from '../components/ui/sticky-scroll-reveal';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 const STICKY_CONTENT = [
   {
@@ -326,7 +331,12 @@ const Home = () => {
           <section className="px-8 max-w-7xl mx-auto">
                <div className="relative rounded-3xl overflow-hidden bg-sonic-800 border border-white/10 group">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
-                  {featured && <div className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700" style={{ backgroundImage: `url(${featured.coverUrl})` }} />}
+                  {featured && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700"
+                      style={{ backgroundImage: isValidImageUrl(featured.coverUrl) ? `url(${featured.coverUrl})` : `url(${PLACEHOLDER_DATA_URI})` }}
+                    />
+                  )}
                   
                   <div className="relative z-20 p-12 flex flex-col md:flex-row items-center gap-12">
                      <div className="w-full md:w-1/2 space-y-6">
@@ -343,133 +353,4 @@ const Home = () => {
                         <button 
                            onClick={() => playTrack(featured)}
                            className="px-8 py-4 bg-white text-black rounded-full font-bold flex items-center gap-3 hover:bg-gray-200 transition-all hover:scale-105"
-                        >
-                           <Play fill="currentColor" size={20} />
-                           Play Now
-                        </button>
-                     </div>
-                  </div>
-               </div>
-          </section>
-
-          {/* Artist Spotlight */}
-          <section className="px-8 max-w-7xl mx-auto">
-             <h3 className="text-3xl font-bold text-white mb-8">Artist Spotlight</h3>
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="md:col-span-2 relative h-[400px] rounded-3xl overflow-hidden group">
-                   {spotlight[0] && (
-                       <img 
-                          src={spotlight[0].coverUrl} 
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                          alt="Featured Artist"
-                       />
-                   )}
-                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                   <div className="absolute bottom-0 left-0 p-8">
-                      <div className="flex items-center gap-2 text-sonic-accent mb-2">
-                         <Star size={16} fill="currentColor" />
-                         <span className="text-sm font-bold tracking-wider">RISING STAR</span>
-                      </div>
-                      <h2 className="text-4xl font-bold mb-4">{spotlight[0]?.artist || "Featured Artist"}</h2>
-                      <p className="text-gray-300 max-w-lg mb-6">Discover the top tracks that are charting in this week's spotlight.</p>
-                      <button className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white text-white hover:text-black transition-all">
-                         View Selected
-                      </button>
-                   </div>
-                </div>
-                <div className="bg-white/5 rounded-3xl p-6 border border-white/10 flex flex-col justify-between">
-                   <div>
-                      <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
-                         <Mic2 size={18} className="text-sonic-accent" />
-                         Top Tracks
-                      </h4>
-                      <div className="space-y-4">
-                         {spotlight.map((track, n) => (
-                            <div 
-                               key={track.id} 
-                               onClick={() => playTrack(track)}
-                               className="flex items-center gap-3 group/track cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-colors"
-                            >
-                               <div className="text-gray-500 font-mono w-4">{n + 1}</div>
-                               <img src={track.coverUrl} className="w-10 h-10 rounded object-cover" alt="Track" />
-                               <div className="flex-1 overflow-hidden">
-                                  <div className="font-medium text-sm group-hover/track:text-sonic-accent transition-colors truncate">{track.title}</div>
-                                  <div className="text-xs text-gray-500 truncate">{((track.title.length * 7 + 3) % 50) / 10 + 0.5}M Plays</div>
-                               </div>
-                               <Play size={14} className="opacity-0 group-hover/track:opacity-100" />
-                            </div>
-                         ))}
-                      </div>
-                   </div>
-                   <button 
-                     onClick={() => navigate(`/search?q=${encodeURIComponent(spotlight[0]?.artist || '')}`)}
-                     className="w-full py-3 mt-4 text-sm font-bold text-center border-t border-white/10 hover:text-sonic-accent transition-colors"
-                   >
-                      See Discography
-                   </button>
-                </div>
-             </div>
-          </section>
-
-          {/* New Releases - Infinite Scroll */}
-          <section className="max-w-[100vw] overflow-hidden">
-               <div className="px-8 max-w-[1920px] mx-auto mb-8">
-                   <h3 className="text-3xl font-bold text-white">New Releases</h3>
-               </div>
-               <div className="relative w-full">
-                  <InfiniteMovingCards
-                    items={newReleases}
-                    direction="right"
-                    speed="fast"
-                    renderItem={(track) => (
-                      <div className="mx-4">
-                        <NewReleaseCard track={track} index={0} />
-                      </div>
-                    )}
-                  />
-              </div>
-          </section>
-
-          {/* Made For You Section - AI Recommendations (PRIORITIZED) */}
-          <section className="max-w-[100vw] overflow-hidden">
-            <div className="px-8 max-w-[1920px] mx-auto">
-              <h3 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 flex items-center gap-3">
-                  Made For {user ? user.name : 'You'}
-                  <span className="text-xs bg-white text-black px-3 py-1 rounded-full uppercase tracking-wider font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]">AI Mix</span>
-              </h3>
-            </div>
-            <div className="relative w-full">
-               <InfiniteMovingCards
-                  items={recommendations.length > 0 ? recommendations : trending}
-                  direction="right"
-                  speed="fast"
-                  renderItem={(track) => (
-                      <div className="mx-4">
-                        <TrackCard track={track} index={0} />
-                      </div>
-                  )}
-               />
-            </div>
-          </section>
-
-          {/* Sticky Scroll Platform Features */}
-          <div className="w-full overflow-hidden pb-10">
-              <div className="flex items-center justify-center gap-6 mb-16">
-                 <div className="h-1 w-16 md:w-24 bg-gradient-to-r from-transparent to-fuchsia-500 rounded-full shadow-[0_0_10px_rgba(167,139,250,0.5)]" />
-                 <h3 className="text-2xl md:text-4xl font-black tracking-[0.2em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-white drop-shadow-[0_0_15px_rgba(167,139,250,0.5)] text-center">
-                    Platform Features
-                 </h3>
-                 <div className="h-1 w-16 md:w-24 bg-gradient-to-l from-transparent to-fuchsia-500 rounded-full shadow-[0_0_10px_rgba(167,139,250,0.5)]" />
-              </div>
-              <div className="w-3/4 mx-auto">
-                  <StickyScroll content={STICKY_CONTENT} />
-              </div>
-          </div>
-
-        </div>
-      </div>
-    </PageTransition>
-  );
-};
-
-export default Home;
+                        >\n                           <Play fill=\"currentColor\" size={20} />\n                           Play Now\n                        </button>\n                     </div>\n                  </div>\n               </div>\n          </section>\n\n          {/* Artist Spotlight */}\n          <section className=\"px-8 max-w-7xl mx-auto\">\n             <h3 className=\"text-3xl font-bold text-white mb-8\">Artist Spotlight</h3>\n             <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n                <div className=\"md:col-span-2 relative h-[400px] rounded-3xl overflow-hidden group\">\n                     {spotlight[0] && (\n                       <ImageWithFallback\n                        src={isValidImageUrl(spotlight[0].coverUrl) ? spotlight[0].coverUrl : PLACEHOLDER_DATA_URI}\n                        className=\"absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105\"\n                        alt=\"Featured Artist\"\n                       />\n                     )}\n                   <div className=\"absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent\" />\n                   <div className=\"absolute bottom-0 left-0 p-8\">\n                      <div className=\"flex items-center gap-2 text-sonic-accent mb-2\">\n                         <Star size={16} fill=\"currentColor\" />\n                         <span className=\"text-sm font-bold tracking-wider\">RISING STAR</span>\n                      </div>\n                      <h2 className=\"text-4xl font-bold mb-4\">{spotlight[0]?.artist || \"Featured Artist\"}</h2>\n                      <p className=\"text-gray-300 max-w-lg mb-6\">Discover the top tracks that are charting in this week's spotlight.</p>\n                      <button className=\"px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:bg-white text-white hover:text-black transition-all\">\n                         View Selected\n                      </button>\n                   </div>\n                </div>\n                <div className=\"bg-white/5 rounded-3xl p-6 border border-white/10 flex flex-col justify-between\">\n                   <div>\n                      <h4 className=\"text-lg font-bold mb-4 flex items-center gap-2\">\n                         <Mic2 size={18} className=\"text-sonic-accent\" />\n                         Top Tracks\n                      </h4>\n                      <div className=\"space-y-4\">\n                         {spotlight.map((track, n) => (\n                            <div \n                               key={track.id} \n                               onClick={() => playTrack(track)}\n                               className=\"flex items-center gap-3 group/track cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-colors\"\n                            >\n                               <div className=\"text-gray-500 font-mono w-4\">{n + 1}</div>\n                               <ImageWithFallback src={isValidImageUrl(track.coverUrl) ? track.coverUrl : PLACEHOLDER_DATA_URI} className=\"w-10 h-10 rounded object-cover\" alt=\"Track\" />\n                               <div className=\"flex-1 overflow-hidden\">\n                                  <div className=\"font-medium text-sm group-hover/track:text-sonic-accent transition-colors truncate\">{track.title}</div>\n                                  <div className=\"text-xs text-gray-500 truncate\">{((track.title.length * 7 + 3) % 50) / 10 + 0.5}M Plays</div>\n                               </div>\n                               <Play size={14} className=\"opacity-0 group-hover/track:opacity-100\" />\n                            </div>\n                         ))}\n                      </div>\n                   </div>\n                   <button \n                     onClick={() => navigate(`/search?q=${encodeURIComponent(spotlight[0]?.artist || '')}`)}\n                     className=\"w-full py-3 mt-4 text-sm font-bold text-center border-t border-white/10 hover:text-sonic-accent transition-colors\"\n                   >\n                      See Discography\n                   </button>\n                </div>\n             </div>\n          </section>\n\n          {/* New Releases - Infinite Scroll */}\n          <section className=\"max-w-[100vw] overflow-hidden\">\n               <div className=\"px-8 max-w-[1920px] mx-auto mb-8\">\n                   <h3 className=\"text-3xl font-bold text-white\">New Releases</h3>\n               </div>\n               <div className=\"relative w-full\">\n                  <InfiniteMovingCards\n                    items={newReleases}\n                    direction=\"right\"\n                    speed=\"fast\"\n                    renderItem={(track) => (\n                      <div className=\"mx-4\">\n                        <NewReleaseCard track={track} index={0} />\n                      </div>\n                    )}\n                  />\n              </div>\n          </section>\n\n          {/* Made For You Section - AI Recommendations (PRIORITIZED) */}\n          <section className=\"max-w-[100vw] overflow-hidden\">\n            <div className=\"px-8 max-w-[1920px] mx-auto\">\n              <h3 className=\"text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 flex items-center gap-3\">\n                  Made For {user ? user.name : 'You'}\n                  <span className=\"text-xs bg-white text-black px-3 py-1 rounded-full uppercase tracking-wider font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]\">AI Mix</span>\n              </h3>\n            </div>\n            <div className=\"relative w-full\">\n               <InfiniteMovingCards\n                  items={recommendations.length > 0 ? recommendations : trending}\n                  direction=\"right\"\n                  speed=\"fast\"\n                  renderItem={(track) => (\n                      <div className=\"mx-4\">\n                        <TrackCard track={track} index={0} />\n                      </div>\n                  )}\n               />\n            </div>\n          </section>\n\n          {/* Sticky Scroll Platform Features */}\n          <div className=\"w-full overflow-hidden pb-10\">\n              <div className=\"flex items-center justify-center gap-6 mb-16\">\n                 <div className=\"h-1 w-16 md:w-24 bg-gradient-to-r from-transparent to-fuchsia-500 rounded-full shadow-[0_0_10px_rgba(167,139,250,0.5)]\" />\n                 <h3 className=\"text-2xl md:text-4xl font-black tracking-[0.2em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-white drop-shadow-[0_0_15px_rgba(167,139,250,0.5)] text-center\">\n                    Platform Features\n                 </h3>\n                 <div className=\"h-1 w-16 md:w-24 bg-gradient-to-l from-transparent to-fuchsia-500 rounded-full shadow-[0_0_10px_rgba(167,139,250,0.5)]\" />\n              </div>\n              <div className=\"w-3/4 mx-auto\">\n                  <StickyScroll content={STICKY_CONTENT} />\n              </div>\n          </div>\n\n        </div>\n      </div>\n    </PageTransition>\n  );\n};\n\nexport default Home;\n

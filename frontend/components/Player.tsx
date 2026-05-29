@@ -7,6 +7,7 @@ import { AuroraBackground } from './player/AuroraBackground';
 import { trackListen } from '../lib/tracker';
 import { AlbumArt } from './player/AlbumArt';
 import { ProgressControl } from './player/ProgressControl';
+import ImageWithFallback from '../components/ImageWithFallback';
 
 const resolveTrackStreamUrl = (audioUrl: string | null | undefined): string | null => {
     const url = (audioUrl || '').trim();
@@ -259,11 +260,11 @@ export default function Player() {
 
                         {/* Mid: Album Art */}
                         <div className="relative w-64 h-64 md:w-72 md:h-72 my-4 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform duration-700 ease-out">
-                            <AlbumArt 
-                               coverUrl={currentTrack.coverUrl} 
-                               title={currentTrack.title} 
-                               isPlaying={playbackState === 'playing' && !isLoading}
-                            />
+                                     <AlbumArt 
+                                         coverUrl={currentTrack.coverUrl} 
+                                         title={currentTrack.title} 
+                                         isPlaying={playbackState === 'playing' && !isLoading}
+                                     />
                             {/* Inner glow for art */}
                             <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/20 pointer-events-none" />
                             
@@ -311,79 +312,4 @@ export default function Player() {
                                 disabled={isLoading}
                                 className={`w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500/80 to-purple-600/80 border border-white/10 flex items-center justify-center text-white hover:scale-105 active:scale-95 transition-all relative overflow-hidden ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 style={{ boxShadow: "10px 10px 20px rgba(0,0,0,0.4), -10px -10px 20px rgba(255,255,255,0.1), inset 0 0 10px rgba(0,0,0,0.2)" }}
-                             >
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                                {playbackState === 'playing' ? <Pause size={38} fill="white" className="relative z-10 drop-shadow-md" /> : <Play size={38} fill="white" className="relative z-10 ml-1 drop-shadow-md" />}
-                             </button>
-                             
-                             {/* Next Bubble (Neumorphic) */}
-                             <button 
-                                onClick={nextTrack} 
-                                className="w-16 h-16 rounded-full bg-[#1a1a1a]/20 backdrop-blur-md border border-white/5 flex items-center justify-center text-white hover:scale-105 active:scale-95 transition-all"
-                                style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3), -5px -5px 10px rgba(255,255,255,0.05)" }}
-                             >
-                                <SkipForward size={28} fill="currentColor" className="opacity-80 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" />
-                             </button>
-                        </div>
-                        
-                        {/* Footer: Actions */}
-                        <div className="w-full flex items-center justify-center gap-8 text-white/50">
-                            <button className="hover:text-white transition-colors"><Repeat size={20} /></button>
-                            <button onClick={() => toggleLike(currentTrack.id)} className={`transition-all hover:scale-110 ${isLiked ? "text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]" : "hover:text-pink-500"}`}>
-                                <Heart size={24} fill={isLiked ? "currentColor" : "none"} />
-                            </button>
-                            <button onClick={openSearch} className="hover:text-white transition-colors"><Youtube size={20} /></button>
-                        </div>
-
-                     </div>
-                  </div>
-
-
-           </motion.div>
-        )}
-
-        {/* === Mini Player (Floating Glass Pill / Water Drop) === */}
-        {!isExpanded && (
-           <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-3xl z-[101] pointer-events-auto">
-               <div 
-                  className="w-full bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full p-2 pl-3 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] flex items-center justify-between cursor-pointer hover:bg-white/15 transition-all group hover:scale-[1.02]"
-                  onClick={toggleExpand}
-                  style={{ boxShadow: "0 10px 40px -10px rgba(0,0,0,0.5)" }}
-               >
-                  <div className="flex items-center gap-4 overflow-hidden flex-1">
-                     <div className={`relative w-12 h-12 rounded-full overflow-hidden shadow-lg border border-white/10 ${playbackState === 'playing' ? 'animate-[spin_10s_linear_infinite]' : ''}`}>
-                        <img src={currentTrack.coverUrl} className="w-full h-full object-cover" alt="Art" />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
-                        {isLoading && (
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <Loader2 size={20} className="text-white animate-spin" />
-                            </div>
-                        )}
-                     </div>
-                     <div className="overflow-hidden flex-1 pr-4">
-                         <h4 className="text-white font-bold truncate text-sm md:text-base">{currentTrack.title}</h4>
-                         <p className="text-white/60 text-xs truncate">{currentTrack.artist}</p>
-                     </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 pr-2">
-                     <button onClick={(e) => { e.stopPropagation(); togglePlay(); }} className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform" disabled={isLoading}>
-                        {playbackState === 'playing' ? <Pause size={18} fill="black" className="text-black" /> : <Play size={18} fill="black" className="text-black ml-0.5" />}
-                     </button>
-                     <button onClick={(e) => { e.stopPropagation(); nextTrack(); }} className="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors text-white/80 hover:text-white">
-                        <SkipForward size={22} fill="currentColor" />
-                     </button>
-                  </div>
-                  
-                  {/* Progress Ring / Bar embedded in border? For now simple bottom bar restricted to pill */}
-                  <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-white/10 overflow-hidden rounded-full mb-[2px]">
-                       <div className="h-full bg-gradient-to-r from-sonic-accent to-blue-500 rounded-full" style={{ width: `${(progress || 0) * 100}%` }} />
-                  </div>
-               </div>
-           </div>
-        )}
-      </motion.div>
-    </>
-  );
-}
-
+                             >\n                                <div className=\"absolute inset-0 bg-gradient-to-t from-black/20 to-transparent\" />\n                                {playbackState === 'playing' ? <Pause size={38} fill=\"white\" className=\"relative z-10 drop-shadow-md\" /> : <Play size={38} fill=\"white\" className=\"relative z-10 ml-1 drop-shadow-md\" />}\n                             </button>\n                             \n                             {/* Next Bubble (Neumorphic) */}\n                             <button \n                                onClick={nextTrack} \n                                className=\"w-16 h-16 rounded-full bg-[#1a1a1a]/20 backdrop-blur-md border border-white/5 flex items-center justify-center text-white hover:scale-105 active:scale-95 transition-all\"\n                                style={{ boxShadow: \"5px 5px 10px rgba(0,0,0,0.3), -5px -5px 10px rgba(255,255,255,0.05)\" }}\n                             >\n                                <SkipForward size={28} fill=\"currentColor\" className=\"opacity-80 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]\" />\n                             </button>\n                        </div>\n                        \n                        {/* Footer: Actions */}\n                        <div className=\"w-full flex items-center justify-center gap-8 text-white/50\">\n                            <button className=\"hover:text-white transition-colors\"><Repeat size={20} /></button>\n                            <button onClick={() => toggleLike(currentTrack.id)} className={`transition-all hover:scale-110 ${isLiked ? \"text-pink-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]\" : \"hover:text-pink-500\"}`}>\n                                <Heart size={24} fill={isLiked ? \"currentColor\" : \"none\"} />\n                            </button>\n                            <button onClick={openSearch} className=\"hover:text-white transition-colors\"><Youtube size={20} /></button>\n                        </div>\n\n                     </div>\n                  </div>\n\n\n           </motion.div>\n        )}\n\n        {/* === Mini Player (Floating Glass Pill / Water Drop) === */}\n        {!isExpanded && (\n           <div className=\"fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-3xl z-[101] pointer-events-auto\">\n               <div \n                  className=\"w-full bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full p-2 pl-3 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] flex items-center justify-between cursor-pointer hover:bg-white/15 transition-all group hover:scale-[1.02]\"\n                  onClick={toggleExpand}\n                  style={{ boxShadow: \"0 10px 40px -10px rgba(0,0,0,0.5)\" }}\n               >\n                  <div className=\"flex items-center gap-4 overflow-hidden flex-1\">\n                     <div className={`relative w-12 h-12 rounded-full overflow-hidden shadow-lg border border-white/10 ${playbackState === 'playing' ? 'animate-[spin_10s_linear_infinite]' : ''}`}>\n                        <ImageWithFallback src={currentTrack.coverUrl} className=\"w-full h-full object-cover\" alt=\"Art\" />\n                        <div className=\"absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none\" />\n                        {isLoading && (\n                            <div className=\"absolute inset-0 bg-black/50 flex items-center justify-center\">\n                                <Loader2 size={20} className=\"text-white animate-spin\" />\n                            </div>\n                        )}\n                     </div>\n                     <div className=\"overflow-hidden flex-1 pr-4\">\n                         <h4 className=\"text-white font-bold truncate text-sm md:text-base\">{currentTrack.title}</h4>\n                         <p className=\"text-white/60 text-xs truncate\">{currentTrack.artist}</p>\n                     </div>\n                  </div>\n\n                  <div className=\"flex items-center gap-3 pr-2\">\n                     <button onClick={(e) => { e.stopPropagation(); togglePlay(); }} className=\"w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform\" disabled={isLoading}>\n                        {playbackState === 'playing' ? <Pause size={18} fill=\"black\" className=\"text-black\" /> : <Play size={18} fill=\"black\" className=\"text-black ml-0.5\" />}\n                     </button>\n                     <button onClick={(e) => { e.stopPropagation(); nextTrack(); }} className=\"w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors text-white/80 hover:text-white\">\n                        <SkipForward size={22} fill=\"currentColor\" />\n                     </button>\n                  </div>\n                  \n                  {/* Progress Ring / Bar embedded in border? For now simple bottom bar restricted to pill */}\n                  <div className=\"absolute bottom-0 left-6 right-6 h-[2px] bg-white/10 overflow-hidden rounded-full mb-[2px]\">\n                       <div className=\"h-full bg-gradient-to-r from-sonic-accent to-blue-500 rounded-full\" style={{ width: `${(progress || 0) * 100}%` }} />\n                  </div>\n               </div>\n           </div>\n        )}\n      </motion.div>\n    </>\n  );\n}
